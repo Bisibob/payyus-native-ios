@@ -3,6 +3,7 @@ PODS:
   - Crashlytics (3.9.3):
     - Fabric (~> 1.7.2)
   - Fabric (1.7.2)
+  - IQKeyboardManager (5.0.7)
   - LGSideMenuController (2.1.1)
   - SwiftyJSON (4.0.0)
 
@@ -10,6 +11,7 @@ DEPENDENCIES:
   - Alamofire
   - Crashlytics
   - Fabric
+  - IQKeyboardManager
   - LGSideMenuController
   - SwiftyJSON
 
@@ -17,9 +19,10 @@ SPEC CHECKSUMS:
   Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
   Crashlytics: dbb07d01876c171c5ccbdf7826410380189e452c
   Fabric: 9cd6a848efcf1b8b07497e0b6a2e7d336353ba15
+  IQKeyboardManager: 0bfa4607d39924116b5c0c8b55b5d789288b5cba
   LGSideMenuController: ae40c80983ab8b8801c7cef0a6804d43aaa72d45
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: 097263dac2948072e37df7b6b127430aef993db7
+PODFILE CHECKSUM: 3eb54ca3b29828c5b7c9ae81089757bf84f3d052
 
 COCOAPODS: 1.4.0

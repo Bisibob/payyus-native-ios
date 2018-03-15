@@ -9,5 +9,6 @@ target 'Payyus' do
   pod 'LGSideMenuController'
   pod 'Alamofire'
   pod 'SwiftyJSON'
+  pod 'IQKeyboardManager'
   # Pods for Payyus
 end
