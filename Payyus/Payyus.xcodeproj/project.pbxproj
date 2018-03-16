@@ -7,6 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		13514A80205A58BB00EE12FC /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13514A76205A58BA00EE12FC /* APIService.swift */; };
+		13514A83205A58BB00EE12FC /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13514A79205A58BB00EE12FC /* AppConfiguration.swift */; };
+		13514A86205A58BB00EE12FC /* AppResponeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13514A7E205A58BB00EE12FC /* AppResponeData.swift */; };
+		13514A89205A59D900EE12FC /* AppAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13514A88205A59D900EE12FC /* AppAPIService.swift */; };
+		13514A8D205A5CBF00EE12FC /* ModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13514A8C205A5CBE00EE12FC /* ModelType.swift */; };
+		13514A8F205A5E0900EE12FC /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13514A8E205A5E0800EE12FC /* UIButtonExtension.swift */; };
+		13514A91205A6A8900EE12FC /* UIStoryboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13514A90205A6A8900EE12FC /* UIStoryboardExtension.swift */; };
+		13514A93205A75CF00EE12FC /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13514A92205A75CF00EE12FC /* Account.swift */; };
+		139A47EB205B628D00C831C7 /* Merchant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139A47EA205B628D00C831C7 /* Merchant.swift */; };
+		139A47ED205B62F200C831C7 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139A47EC205B62F200C831C7 /* SampleData.swift */; };
+		139A47F0205B664F00C831C7 /* MerchantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139A47EF205B664F00C831C7 /* MerchantTableViewCell.swift */; };
+		139A47F2205B677600C831C7 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139A47F1205B677600C831C7 /* UITextField+Extension.swift */; };
+		139A47F4205B7CCB00C831C7 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139A47F3205B7CCB00C831C7 /* String+Extension.swift */; };
 		84282D632059229600F7F806 /* SetupPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84282D622059229600F7F806 /* SetupPhoneViewController.swift */; };
 		84282D652059248600F7F806 /* SetupSecurityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84282D642059248600F7F806 /* SetupSecurityViewController.swift */; };
 		84282D672059254B00F7F806 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84282D662059254B00F7F806 /* UIView+Extension.swift */; };
@@ -41,6 +54,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		13514A76205A58BA00EE12FC /* APIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		13514A79205A58BB00EE12FC /* AppConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
+		13514A7E205A58BB00EE12FC /* AppResponeData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppResponeData.swift; sourceTree = "<group>"; };
+		13514A88205A59D900EE12FC /* AppAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppAPIService.swift; sourceTree = "<group>"; };
+		13514A8C205A5CBE00EE12FC /* ModelType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModelType.swift; path = ../../../../../../../Git/TestMVVM2/MVVMTemplate/Models/ModelType.swift; sourceTree = "<group>"; };
+		13514A8E205A5E0800EE12FC /* UIButtonExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
+		13514A90205A6A8900EE12FC /* UIStoryboardExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIStoryboardExtension.swift; sourceTree = "<group>"; };
+		13514A92205A75CF00EE12FC /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		139A47EA205B628D00C831C7 /* Merchant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Merchant.swift; sourceTree = "<group>"; };
+		139A47EC205B62F200C831C7 /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
+		139A47EF205B664F00C831C7 /* MerchantTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantTableViewCell.swift; sourceTree = "<group>"; };
+		139A47F1205B677600C831C7 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
+		139A47F3205B7CCB00C831C7 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		326A62FBEB8AED19A4AB10DA /* Pods-Payyus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Payyus.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Payyus/Pods-Payyus.debug.xcconfig"; sourceTree = "<group>"; };
 		84282D622059229600F7F806 /* SetupPhoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupPhoneViewController.swift; sourceTree = "<group>"; };
 		84282D642059248600F7F806 /* SetupSecurityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupSecurityViewController.swift; sourceTree = "<group>"; };
@@ -90,6 +116,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		13514A6F205A2F7000EE12FC /* API */ = {
+			isa = PBXGroup;
+			children = (
+				13514A76205A58BA00EE12FC /* APIService.swift */,
+				13514A79205A58BB00EE12FC /* AppConfiguration.swift */,
+				13514A7A205A58BB00EE12FC /* AppServices */,
+				139A47EC205B62F200C831C7 /* SampleData.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		13514A70205A2F7F00EE12FC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				13514A8C205A5CBE00EE12FC /* ModelType.swift */,
+				13514A92205A75CF00EE12FC /* Account.swift */,
+				139A47EA205B628D00C831C7 /* Merchant.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		13514A7A205A58BB00EE12FC /* AppServices */ = {
+			isa = PBXGroup;
+			children = (
+				13514A88205A59D900EE12FC /* AppAPIService.swift */,
+				13514A7E205A58BB00EE12FC /* AppResponeData.swift */,
+			);
+			path = AppServices;
+			sourceTree = "<group>";
+		};
+		139A47EE205B663B00C831C7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				139A47EF205B664F00C831C7 /* MerchantTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		2340B60C34E3B847FAA81341 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -120,13 +184,13 @@
 		84C090962058D29E003D7FB1 /* Payyus */ = {
 			isa = PBXGroup;
 			children = (
+				139A47EE205B663B00C831C7 /* View */,
+				13514A70205A2F7F00EE12FC /* Model */,
+				13514A6F205A2F7000EE12FC /* API */,
 				84C090B720591D81003D7FB1 /* Supporting Files */,
 				84C090B12058D3F6003D7FB1 /* Helper */,
-				84C090B02058D3E7003D7FB1 /* API */,
 				84C090AF2058D3B1003D7FB1 /* Storyboard */,
 				84C090AE2058D398003D7FB1 /* Controller */,
-				84C090AD2058D378003D7FB1 /* Model */,
-				84C090AB2058D361003D7FB1 /* View */,
 				84C090972058D29E003D7FB1 /* AppDelegate.swift */,
 				84C090A92058D2FC003D7FB1 /* BaseViewController.swift */,
 				84C0909E2058D29E003D7FB1 /* Assets.xcassets */,
@@ -134,21 +198,6 @@
 				84C090A32058D29E003D7FB1 /* Info.plist */,
 			);
 			path = Payyus;
-			sourceTree = "<group>";
-		};
-		84C090AB2058D361003D7FB1 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				84C090B22058D419003D7FB1 /* Xib */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		84C090AD2058D378003D7FB1 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		84C090AE2058D398003D7FB1 /* Controller */ = {
@@ -167,26 +216,16 @@
 			path = Storyboard;
 			sourceTree = "<group>";
 		};
-		84C090B02058D3E7003D7FB1 /* API */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = API;
-			sourceTree = "<group>";
-		};
 		84C090B12058D3F6003D7FB1 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				13514A90205A6A8900EE12FC /* UIStoryboardExtension.swift */,
+				13514A8E205A5E0800EE12FC /* UIButtonExtension.swift */,
 				84282D662059254B00F7F806 /* UIView+Extension.swift */,
+				139A47F1205B677600C831C7 /* UITextField+Extension.swift */,
+				139A47F3205B7CCB00C831C7 /* String+Extension.swift */,
 			);
 			path = Helper;
-			sourceTree = "<group>";
-		};
-		84C090B22058D419003D7FB1 /* Xib */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Xib;
 			sourceTree = "<group>";
 		};
 		84C090B42058DF8F003D7FB1 /* MainViewController */ = {
@@ -388,6 +427,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Payyus/Pods-Payyus-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/EVReflection/EVReflection.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework",
 				"${BUILT_PRODUCTS_DIR}/LGSideMenuController/LGSideMenuController.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
@@ -395,6 +435,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EVReflection.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManager.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LGSideMenuController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
@@ -411,13 +452,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				13514A89205A59D900EE12FC /* AppAPIService.swift in Sources */,
+				13514A8D205A5CBF00EE12FC /* ModelType.swift in Sources */,
+				139A47EB205B628D00C831C7 /* Merchant.swift in Sources */,
+				139A47ED205B62F200C831C7 /* SampleData.swift in Sources */,
 				84C090B62058DF9A003D7FB1 /* LoginViewController.swift in Sources */,
 				84282D652059248600F7F806 /* SetupSecurityViewController.swift in Sources */,
 				84C090982058D29E003D7FB1 /* AppDelegate.swift in Sources */,
+				13514A93205A75CF00EE12FC /* Account.swift in Sources */,
 				84282D672059254B00F7F806 /* UIView+Extension.swift in Sources */,
 				84282D6B20592C0800F7F806 /* SetupLastStepViewController.swift in Sources */,
+				13514A86205A58BB00EE12FC /* AppResponeData.swift in Sources */,
 				84C090AA2058D2FC003D7FB1 /* BaseViewController.swift in Sources */,
+				139A47F4205B7CCB00C831C7 /* String+Extension.swift in Sources */,
+				13514A8F205A5E0900EE12FC /* UIButtonExtension.swift in Sources */,
+				13514A83205A58BB00EE12FC /* AppConfiguration.swift in Sources */,
 				84282D6920592A0D00F7F806 /* SetupMerchantViewController.swift in Sources */,
+				139A47F0205B664F00C831C7 /* MerchantTableViewCell.swift in Sources */,
+				139A47F2205B677600C831C7 /* UITextField+Extension.swift in Sources */,
+				13514A91205A6A8900EE12FC /* UIStoryboardExtension.swift in Sources */,
+				13514A80205A58BB00EE12FC /* APIService.swift in Sources */,
 				84282D632059229600F7F806 /* SetupPhoneViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -492,7 +546,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -543,7 +597,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";

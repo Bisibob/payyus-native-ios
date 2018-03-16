@@ -8,6 +8,7 @@ target 'Payyus' do
   pod 'Crashlytics'
   pod 'LGSideMenuController'
   pod 'Alamofire'
+  pod 'EVReflection', '~> 5.5.1'
   pod 'SwiftyJSON'
   pod 'IQKeyboardManager'
   # Pods for Payyus

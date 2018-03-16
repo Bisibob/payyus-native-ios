@@ -14,6 +14,11 @@ class SetupPhoneViewController: BaseViewController {
     @IBOutlet weak var tfDigitCode: UITextField!
     @IBOutlet weak var btnSend: UIButton!
     @IBOutlet weak var btnNext: UIButton!
+    @IBOutlet weak var lbResendDigitCode: UILabel!
+    private lazy var tapOnResendDigitCode: UITapGestureRecognizer = {
+        return UITapGestureRecognizer(target: self, action: #selector(resendDigitCode(sender:)))
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -26,11 +31,12 @@ class SetupPhoneViewController: BaseViewController {
         tfPhoneNumber.attributedPlaceholder = NSAttributedString(string: tfPhoneNumberPlaceholder, attributes: [NSAttributedStringKey.foregroundColor: UIColor.init(red: 112/255, green: 112/255, blue: 112/255, alpha: 1.0)])
         
         tfDigitCode.attributedPlaceholder = NSAttributedString(string: tfDigitCodePlaceholder, attributes: [NSAttributedStringKey.foregroundColor: UIColor.init(red: 112/255, green: 112/255, blue: 112/255, alpha: 1.0)])
-        
+        enableDigitCode(false)
         btnSend.addCorner()
         btnNext.addCorner()
         tfPhoneNumber.delegate = self
         tfDigitCode.delegate = self
+        lbResendDigitCode.addGestureRecognizer(tapOnResendDigitCode)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -43,12 +49,73 @@ class SetupPhoneViewController: BaseViewController {
     }
     
     @IBAction func onSend(_ sender: Any) {
+        addPhone()
     }
     
     @IBAction func onNext(_ sender: Any) {
-    }    
+        verifyCode()
+    }
+
+    @objc func resendDigitCode(sender: UITapGestureRecognizer) {
+        addPhone()
+    }
+    private func enablePhoneNumber(_ value: Bool) {
+        btnSend.isEnabled = value
+    }
+
+    private func enableDigitCode(_ value: Bool) {
+        btnNext.isEnabled = value
+        tfDigitCode.isEnabled = value
+        tapOnResendDigitCode.isEnabled = value
+    }
+
+
+    // MARK - API service
+    func addPhone() {
+        showLoading()
+        AppAPIService.addPhone(phone: tfPhoneNumber.text!) {[weak self] (result) in
+            guard let strongSelf = self else { return }
+            strongSelf.hiddenLoading()
+            switch result {
+            case .success():
+                strongSelf.enableDigitCode(true)
+                strongSelf.tfDigitCode.becomeFirstResponder()
+                strongSelf.enablePhoneNumber(false)
+                strongSelf.showMessage(title: "Success", message: "Please check for sms box for verification code.")
+                break
+            case .error(let error):
+                strongSelf.showError(error)
+                break
+            }
+        }
+    }
+
+    func verifyCode() {
+        showLoading()
+        AppAPIService.verifyPhone(phone: tfPhoneNumber.text!, code: tfDigitCode.text!) {[weak self] (result) in
+            guard let strongSelf = self else { return }
+            strongSelf.hiddenLoading()
+            switch result {
+            case .success():
+                let setupPasswordVC = UIStoryboard.Main.setupPasswordViewController()
+                strongSelf.navigationController?.pushViewController(setupPasswordVC, animated: true)
+                break
+            case .error(let error):
+                strongSelf.showError(error)
+                break
+            }
+        }
+    }
 }
+
 extension SetupPhoneViewController:UITextFieldDelegate{
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == tfPhoneNumber {
+            enablePhoneNumber(true)
+            enableDigitCode(false)
+        }
+    }
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == tfPhoneNumber{
             textField.resignFirstResponder()
