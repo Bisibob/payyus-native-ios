@@ -42,6 +42,7 @@ class AppAPIService {
 
     // MARK: Merchant
     static func searchMerchant(name: String, completionHandler: @escaping ((Results<Merchant>) -> Void)) {
+        print(name)
         DispatchQueue.global().async {
             Thread.sleep(forTimeInterval: 1)
             DispatchQueue.main.async {

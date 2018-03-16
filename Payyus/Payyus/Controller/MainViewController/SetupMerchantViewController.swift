@@ -16,6 +16,7 @@ class SetupMerchantViewController: BaseViewController {
     @IBOutlet weak var vTableLoading: UIView!
     private var selectedMerchant: Merchant?
     private var merchantsList: [Merchant] = []
+    private var delayTypingTimer: Timer?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +37,7 @@ class SetupMerchantViewController: BaseViewController {
     }
     
     @IBAction func onNext(_ sender: Any) {
+
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -45,6 +47,19 @@ class SetupMerchantViewController: BaseViewController {
     private func showTableView(_ value: Bool){
         tbvMerchants.isHidden = !value
         vTableLoading.isHidden = !value
+    }
+    func scheduleSearchMerchant(timeInterval: TimeInterval) {
+        if delayTypingTimer == nil {
+            delayTypingTimer = Timer.scheduledTimer(timeInterval: timeInterval, target: self, selector: #selector(startSearching(timer:)), userInfo: nil, repeats: false)
+        }
+    }
+    @objc func startSearching(timer: Timer) {
+        delayTypingTimer?.invalidate()
+        delayTypingTimer = nil
+        guard let text = tfMerchantName.text, text.count > 0 else {
+            return
+        }
+        searchMerchant(keyword: text)
     }
 
     func searchMerchant(keyword: String){
@@ -62,7 +77,6 @@ class SetupMerchantViewController: BaseViewController {
             case .error(let error):
                 strongSelf.showError(error)
             }
-
         }
     }
 }
@@ -72,7 +86,7 @@ extension SetupMerchantViewController:UITextFieldDelegate{
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let updatedText = textField.textShouldChangeCharactersIn(range, replacementString: string)
         if updatedText.count > 4 {
-            searchMerchant(keyword: updatedText)
+            scheduleSearchMerchant(timeInterval: 0.5)
             showTableView(true)
         }else if updatedText.count == 0{
             showTableView(false)
