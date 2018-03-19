@@ -10,8 +10,10 @@ import Foundation
 class AppConfiguration: NSObject {
 
     static let shared = AppConfiguration()
-
-
+    var bankData: BankAccount?
+    var phoneNumber: String?
+    var pincode: String?
+    var account: Account?
 //    private lazy var authentication: AuthenticationService = AppAuthenticationService()
 
     private var _baseURL: String = ""

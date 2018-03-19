@@ -7,6 +7,7 @@
 //
 
 import UIKit
+//import LinkKit
 
 class SetupLastStepViewController: BaseViewController {
 
@@ -27,7 +28,9 @@ class SetupLastStepViewController: BaseViewController {
     }
     
     @IBAction func onNext(_ sender: Any) {
-        
+        let vc = UIStoryboard.Main.bankConnectionViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
 }
+

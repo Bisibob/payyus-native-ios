@@ -36,7 +36,7 @@ class AppAPIService {
         completionHandler(.success(()))
     }
 
-    static func getSecretKey(account: Account, completionHandler: @escaping ((Result<Void>) -> Void)) {
+    static func getSecretKey(account: Account, withCHKey: Bool = false, completionHandler: @escaping ((Result<Void>) -> Void)) {
          completionHandler(.success(()))
     }
 
@@ -52,5 +52,16 @@ class AppAPIService {
             }
         }
 
+    }
+
+    // MARK: Payment
+    static func plaidAccounts(publicToken: String, completionHandler: @escaping ((Results<BankAccount>) -> Void)){
+        DispatchQueue.global().async {
+            Thread.sleep(forTimeInterval: 1)
+            DispatchQueue.main.async {
+                let bankAccount = SamepleData.bankAccountsList()
+                completionHandler(.success(bankAccount))
+            }
+        }
     }
 }

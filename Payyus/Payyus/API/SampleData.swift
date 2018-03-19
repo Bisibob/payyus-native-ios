@@ -15,4 +15,12 @@ class SamepleData {
             Merchant(name: "Mirrison's", logo: "")
         ]
     }
+
+    static func bankAccountsList() -> [BankAccount] {
+        return [
+            BankAccount(accountId: "1", name: "David", accountNumber: "233322233222", balance: 100 ),
+            BankAccount(accountId: "2", name: "David 1", accountNumber: "233322233233", balance: 500 ),
+            BankAccount(accountId: "3", name: "David 2", accountNumber: "233322233288", balance: 12200 )
+        ]
+    }
 }
