@@ -30,6 +30,7 @@ class BankAccountTableViewCell: UITableViewCell {
         let showNumber = String(accountNumber.suffix(from: accountNumber.index(accountNumber.endIndex, offsetBy: -4)))
         let hiddenNumber = String(repeating: "*", count: accountNumber.count - 4)
         lbAccountNumber.text =  hiddenNumber + showNumber
+        lbAvailableBalance.text = "$\(account.balance)"
     }
 
 }

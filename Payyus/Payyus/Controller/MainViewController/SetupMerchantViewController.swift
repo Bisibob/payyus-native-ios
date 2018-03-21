@@ -31,6 +31,7 @@ class SetupMerchantViewController: BaseViewController {
         let tfMerchantNamePlaceholder: String = "Merchant Name"
         tfMerchantName.attributedPlaceholder = NSAttributedString(string: tfMerchantNamePlaceholder, attributes: [NSAttributedStringKey.foregroundColor: UIColor.init(red: 112/255, green: 112/255, blue: 112/255, alpha: 1.0)])
         tfMerchantName.delegate = self
+        tbvMerchants.rowHeight = 84
         tbvMerchants.delegate = self
         tbvMerchants.dataSource = self
 
@@ -109,7 +110,7 @@ extension SetupMerchantViewController: UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! MerchantTableViewCell
         let item = merchantsList[indexPath.row]
-        cell.lbName.text = item.name
+        cell.showData(item)
         return cell
     }
 

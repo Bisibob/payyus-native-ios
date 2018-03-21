@@ -16,6 +16,13 @@ class ResponeResult: ModelType {
 
 }
 
+class DataValue: ModelType {
+
+    var data: String = ""
+    var value: String = ""
+
+}
+
 class AppResponeData {
     static func convertResponeData<T>(data: Data, completionHandler: @escaping ((Result<T>) -> Void)) where T : ModelType{
         let value = T(data: data, conversionOptions: T.conversionDeserializeOptions(), forKeyPath: T.singularKeyPath())

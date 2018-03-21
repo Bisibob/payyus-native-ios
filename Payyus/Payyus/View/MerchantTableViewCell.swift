@@ -23,4 +23,9 @@ class MerchantTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    func showData(_ merchant: Merchant) {
+        ivLogo.image = UIImage(named: merchant.logo)
+        lbName.text = merchant.name
+    }
+
 }

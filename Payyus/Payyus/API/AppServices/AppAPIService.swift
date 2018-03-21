@@ -7,7 +7,8 @@
 //
 
 import Foundation
-
+import Alamofire
+import EVReflection
 
 class AppAPIService {
     // MARK: Verify phone
@@ -62,6 +63,16 @@ class AppAPIService {
                 let bankAccount = SamepleData.bankAccountsList()
                 completionHandler(.success(bankAccount))
             }
+        }
+    }
+
+    static func getZipCodes(zipCode: String, completionHandler: @escaping (([DataValue]) -> Void)) -> DataRequest? {
+        return APIService.request(url: AppConfiguration.shared.baseURL()+"getZipCodes", method: .post, parameters: ["query":zipCode], completionHandler: { (data) in
+//            let string = String(data: data, encoding: String.Encoding.utf8)
+            let zipCodes = [DataValue](data: data, conversionOptions: ConversionOptions.DefaultDeserialize, forKeyPath: "suggestions")
+            completionHandler(zipCodes)
+        }) { (error) in
+            print("error")
         }
     }
 }

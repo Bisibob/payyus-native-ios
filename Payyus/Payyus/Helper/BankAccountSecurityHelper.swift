@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CryptoSwift
 
 class BankAccountSecurityHelper {
     static func splitC(suffix: String, secretKey: String) {
@@ -24,9 +25,15 @@ class BankAccountSecurityHelper {
                     type = tmpType
                 }
 
-//                if tmp.key == nil {
-//                    tmp.key =
-//                }
+                if tmp.key == nil {
+//                    do {
+//                        let encrypt = try AES(key: arc4random(), iv: secretKey).encrypt(<#T##bytes: ArraySlice<UInt8>##ArraySlice<UInt8>#>)
+//
+//                    }catch(){
+//
+//                    }
+
+                }
 
             }
         }

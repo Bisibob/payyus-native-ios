@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		131D8A852060C107000B639D /* SetupBankBillingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 131D8A842060C107000B639D /* SetupBankBillingViewController.swift */; };
+		131D8A8820610393000B639D /* AppConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 131D8A8720610393000B639D /* AppConfig.plist */; };
+		131D8A8B20610B49000B639D /* AutoCompleteTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 131D8A8A20610B49000B639D /* AutoCompleteTextField.swift */; };
 		13514A80205A58BB00EE12FC /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13514A76205A58BA00EE12FC /* APIService.swift */; };
 		13514A83205A58BB00EE12FC /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13514A79205A58BB00EE12FC /* AppConfiguration.swift */; };
 		13514A86205A58BB00EE12FC /* AppResponeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13514A7E205A58BB00EE12FC /* AppResponeData.swift */; };
@@ -65,6 +68,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		131D8A842060C107000B639D /* SetupBankBillingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupBankBillingViewController.swift; sourceTree = "<group>"; };
+		131D8A8720610393000B639D /* AppConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AppConfig.plist; sourceTree = "<group>"; };
+		131D8A8A20610B49000B639D /* AutoCompleteTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoCompleteTextField.swift; sourceTree = "<group>"; };
 		13514A76205A58BA00EE12FC /* APIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		13514A79205A58BB00EE12FC /* AppConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		13514A7E205A58BB00EE12FC /* AppResponeData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppResponeData.swift; sourceTree = "<group>"; };
@@ -138,6 +144,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		131D8A8920610B49000B639D /* AutoCompleteTextField */ = {
+			isa = PBXGroup;
+			children = (
+				131D8A8A20610B49000B639D /* AutoCompleteTextField.swift */,
+			);
+			path = AutoCompleteTextField;
+			sourceTree = "<group>";
+		};
 		13514A6F205A2F7000EE12FC /* API */ = {
 			isa = PBXGroup;
 			children = (
@@ -187,6 +201,7 @@
 			children = (
 				139A47F7205BAAF400C831C7 /* BankConnectionViewController.swift */,
 				138625F3205F50EF002866AB /* BankAccountSelectionViewController.swift */,
+				131D8A842060C107000B639D /* SetupBankBillingViewController.swift */,
 			);
 			path = Payment;
 			sourceTree = "<group>";
@@ -230,6 +245,7 @@
 				84C090AE2058D398003D7FB1 /* Controller */,
 				84C090972058D29E003D7FB1 /* AppDelegate.swift */,
 				84C090A92058D2FC003D7FB1 /* BaseViewController.swift */,
+				131D8A8720610393000B639D /* AppConfig.plist */,
 				84C0909E2058D29E003D7FB1 /* Assets.xcassets */,
 				84C090A02058D29E003D7FB1 /* LaunchScreen.storyboard */,
 				84C090A32058D29E003D7FB1 /* Info.plist */,
@@ -257,6 +273,7 @@
 		84C090B12058D3F6003D7FB1 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				131D8A8920610B49000B639D /* AutoCompleteTextField */,
 				13514A90205A6A8900EE12FC /* UIStoryboardExtension.swift */,
 				13514A8E205A5E0800EE12FC /* UIButtonExtension.swift */,
 				84282D662059254B00F7F806 /* UIView+Extension.swift */,
@@ -337,6 +354,7 @@
 				FE6E14D9C4FAC2AEBA0BBAD3 /* [CP] Embed Pods Frameworks */,
 				077669E03BEBB4691D33FDB0 /* [CP] Copy Pods Resources */,
 				84C090B32058DE62003D7FB1 /* ShellScript */,
+				131C126E206003F0007B397F /* Prepare for Distribution */,
 			);
 			buildRules = (
 			);
@@ -405,6 +423,7 @@
 				84C090CC20591D8E003D7FB1 /* Oswald-Stencil.ttf in Resources */,
 				84C090DD20591D8E003D7FB1 /* Oswald-ExtraLight.ttf in Resources */,
 				84C090CD20591D8E003D7FB1 /* OpenSans-Semibold.ttf in Resources */,
+				131D8A8820610393000B639D /* AppConfig.plist in Resources */,
 				84C090DE20591D8E003D7FB1 /* Oswald-Light.ttf in Resources */,
 				84C090D520591D8E003D7FB1 /* OpenSans-LightItalic.ttf in Resources */,
 				84C090CE20591D8E003D7FB1 /* Oswald-Bold.ttf in Resources */,
@@ -428,6 +447,20 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Payyus/Pods-Payyus-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		131C126E206003F0007B397F /* Prepare for Distribution */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Prepare for Distribution";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "LINK_ROOT=${PODS_ROOT:+$PODS_ROOT/Plaid/ios}\ncp \"${LINK_ROOT:-$PROJECT_DIR}\"/LinkKit.framework/prepare_for_distribution.sh \"${CODESIGNING_FOLDER_PATH}\"/Frameworks/LinkKit.framework/prepare_for_distribution.sh\n\"${CODESIGNING_FOLDER_PATH}\"/Frameworks/LinkKit.framework/prepare_for_distribution.sh";
 		};
 		84C090B32058DE62003D7FB1 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -467,6 +500,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Payyus/Pods-Payyus-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/EVReflection/EVReflection.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework",
@@ -476,6 +510,7 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EVReflection.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManager.framework",
@@ -507,6 +542,7 @@
 				84C090982058D29E003D7FB1 /* AppDelegate.swift in Sources */,
 				13514A93205A75CF00EE12FC /* Account.swift in Sources */,
 				138625F6205F51EC002866AB /* BankAccountTableViewCell.swift in Sources */,
+				131D8A852060C107000B639D /* SetupBankBillingViewController.swift in Sources */,
 				84282D672059254B00F7F806 /* UIView+Extension.swift in Sources */,
 				84282D6B20592C0800F7F806 /* SetupLastStepViewController.swift in Sources */,
 				13514A86205A58BB00EE12FC /* AppResponeData.swift in Sources */,
@@ -519,6 +555,7 @@
 				13514A83205A58BB00EE12FC /* AppConfiguration.swift in Sources */,
 				84282D6920592A0D00F7F806 /* SetupMerchantViewController.swift in Sources */,
 				139A47F0205B664F00C831C7 /* MerchantTableViewCell.swift in Sources */,
+				131D8A8B20610B49000B639D /* AutoCompleteTextField.swift in Sources */,
 				138625FA205F926C002866AB /* CommonHelper.swift in Sources */,
 				139A47F2205B677600C831C7 /* UITextField+Extension.swift in Sources */,
 				138625FE205FA0F5002866AB /* HalfCCard.swift in Sources */,
@@ -663,6 +700,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 326A62FBEB8AED19A4AB10DA /* Pods-Payyus.debug.xcconfig */;
 			buildSettings = {
+				APP_DISPLAY_NAME = "Debug-Payyus";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Nam Tran (8MP2E2PHQ7)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -687,6 +725,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B46BE9BF3A54F480808ADA77 /* Pods-Payyus.release.xcconfig */;
 			buildSettings = {
+				APP_DISPLAY_NAME = Payyus;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";

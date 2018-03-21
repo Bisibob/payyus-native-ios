@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (4.7.0)
   - Crashlytics (3.9.3):
     - Fabric (~> 1.7.2)
   - CryptoSwift (0.8.3)
@@ -12,6 +13,7 @@ PODS:
   - SwiftyJSON (4.0.0)
 
 DEPENDENCIES:
+  - Alamofire
   - Crashlytics
   - CryptoSwift
   - EVReflection (~> 5.5.1)
@@ -22,6 +24,7 @@ DEPENDENCIES:
   - SwiftyJSON
 
 SPEC CHECKSUMS:
+  Alamofire: 907e0a98eb68cdb7f9d1f541a563d6ac5dc77b25
   Crashlytics: dbb07d01876c171c5ccbdf7826410380189e452c
   CryptoSwift: 033efc3523865d19cc6ab6612fa17a62613b5dfa
   EVReflection: f5acec65ca5591bcb654743156172e3f2cbf2257
@@ -31,6 +34,6 @@ SPEC CHECKSUMS:
   Plaid: 254ef68f0ec28fc48627504aefb0c18dde5d08d8
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: c8a8dcfd425f52b050f15128ecada850e8d465d5
+PODFILE CHECKSUM: bf3be5a54aa0977b0b4a21b4b3b17643d82c5254
 
 COCOAPODS: 1.4.0

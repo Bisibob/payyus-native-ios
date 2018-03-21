@@ -53,7 +53,9 @@ extension BankConnectionViewController: PLKPlaidLinkViewDelegate {
     }
 
     func linkViewController(_ linkViewController: PLKPlaidLinkViewController, didExitWithError error: Error?, metadata: [String : Any]?) {
-
+        linkViewController.dismiss(animated: true) {[unowned self] in
+            self.navigationController?.popViewController(animated: true)
+        }
     }
 
 

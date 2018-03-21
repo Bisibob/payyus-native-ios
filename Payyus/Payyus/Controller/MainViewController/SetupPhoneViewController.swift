@@ -109,6 +109,13 @@ class SetupPhoneViewController: BaseViewController {
 }
 
 extension SetupPhoneViewController:UITextFieldDelegate{
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if textField == tfDigitCode {
+            btnNext.isEnabled =  textField.text?.checkLength(comparison: .equalTo, length: 6, shouldChangeCharactersIn: range, replacementString: string) ?? false
+        }
+        return true
+    }
+
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == tfPhoneNumber {
             enablePhoneNumber(true)

@@ -4,6 +4,8 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>$(APP_DISPLAY_NAME)</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -15,9 +17,9 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>0.2</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>2</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -34,6 +36,22 @@
 	</dict>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>PLKPlaidLinkConfiguration</key>
+	<dict>
+		<key>clientName</key>
+		<string>$(PRODUCT_NAME)</string>
+		<key>env</key>
+		<string>$(LINK_ENV)</string>
+		<key>key</key>
+		<string>$(LINK_KEY)</string>
+		<key>product</key>
+		<array>
+			<string>Auth</string>
+			<string>Transactions</string>
+		</array>
+		<key>selectAccount</key>
+		<false/>
+	</dict>
 	<key>UIAppFonts</key>
 	<array>
 		<string>OpenSans-Bold.ttf</string>
@@ -77,21 +95,10 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>PLKPlaidLinkConfiguration</key>
+	<key>NSAppTransportSecurity</key>
 	<dict>
-		<key>clientName</key>
-		<string>$(PRODUCT_NAME)</string>
-		<key>env</key>
-		<string>$(LINK_ENV)</string>
-		<key>key</key>
-		<string>$(LINK_KEY)</string>
-		<key>product</key>
-		<array>
-			<string>Auth</string>
-			<string>Transactions</string>
-		</array>
-		<key>selectAccount</key>
-		<false/>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
 	</dict>
 </dict>
 </plist>
