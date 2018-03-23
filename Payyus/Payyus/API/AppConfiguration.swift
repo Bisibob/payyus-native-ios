@@ -10,10 +10,11 @@ import Foundation
 class AppConfiguration: NSObject {
 
     static let shared = AppConfiguration()
-    var bankData: BankAccount?
+    var bankData: PlaidBankAccount?
     var phoneNumber: String?
     var pincode: String?
     var account: Account?
+    var lastMerchant: Merchant?
     
 
     private var _baseURL: String = ""
@@ -26,11 +27,34 @@ class AppConfiguration: NSObject {
         if let userAccount = UserDefaults.standard.object(forKey: "UserAccount") as? NSDictionary {
             account = Account(dictionary: userAccount)
         }
+//        if let fileURL = fileUrl() {
+//            do {
+//                if let string = NSDictionary(contentsOf: fileURL){
+//                    lastMerchant = Merchant(dictionary: string)
+//                }
+//            }
+//            catch {/* error handling here */}
+//        }
+
     }
 
+    private func fileUrl() -> URL?{
+        let file = "lastMerchant.plist"
+        if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+            let fileURL = dir.appendingPathComponent(file)
+            return fileURL
+        }
+        return nil
+    }
     func saveData() {
         UserDefaults.standard.set(account?.toDictionary(), forKey: "UserAccount")
-
+//        if let fileURL = fileUrl() {
+//            do {
+//                lastMerchant?.toDictionary().write(to: fileURL, atomically: true)
+//            }
+//            catch {/* error handling here */}
+//        }
+//        UserDefaults.standard.set(lastMerchant?.toDictionary(), forKey: "LastMerchant")
     }
 
     func baseURL() -> String {
@@ -43,6 +67,7 @@ class AppConfiguration: NSObject {
                 account = Account()
             }
             account?.token = token
+            account?.phone = phone
         }
     }
 

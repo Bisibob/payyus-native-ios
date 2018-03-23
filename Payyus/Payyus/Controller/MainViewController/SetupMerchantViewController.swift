@@ -40,7 +40,7 @@ class SetupMerchantViewController: BaseViewController {
     
     @IBAction func onNext(_ sender: Any) {
         if let selectedMerchant = selectedMerchant {
-            AppConfiguration.shared.account?.mainMerchantId = selectedMerchant.id
+            AppConfiguration.shared.lastMerchant = selectedMerchant
         }
 
     }

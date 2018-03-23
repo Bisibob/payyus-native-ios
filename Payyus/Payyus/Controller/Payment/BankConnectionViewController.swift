@@ -42,6 +42,7 @@ class BankConnectionViewController: UIViewController {
 
 extension BankConnectionViewController: PLKPlaidLinkViewDelegate {
     func linkViewController(_ linkViewController: PLKPlaidLinkViewController, didSucceedWithPublicToken publicToken: String, metadata: [String : Any]?) {
+        print(publicToken)
         linkViewController.dismiss(animated: true) {[unowned self] in
             let bankAccountSelectionVC = UIStoryboard.Main.bankAccountSelectionViewController() as! BankAccountSelectionViewController
             bankAccountSelectionVC.publicToken = publicToken

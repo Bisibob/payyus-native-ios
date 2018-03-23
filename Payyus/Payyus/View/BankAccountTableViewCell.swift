@@ -24,12 +24,16 @@ class BankAccountTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    func showData(_ account: BankAccount) {
+    func showData(_ account: PlaidBankAccount) {
         lbAccountName.text = account.name
-        let accountNumber = account.accountNumber
-        let showNumber = String(accountNumber.suffix(from: accountNumber.index(accountNumber.endIndex, offsetBy: -4)))
-        let hiddenNumber = String(repeating: "*", count: accountNumber.count - 4)
-        lbAccountNumber.text =  hiddenNumber + showNumber
+        lbAccountNumber.text = "***"
+        if !account.accountNumber.isEmpty {
+            let accountNumber = account.accountNumber
+            let showNumber = String(accountNumber.suffix(from: accountNumber.index(accountNumber.endIndex, offsetBy: -4)))
+            let hiddenNumber = String(repeating: "*", count: accountNumber.count - 4)
+            lbAccountNumber.text =  hiddenNumber + showNumber
+        }
+
         lbAvailableBalance.text = "$\(account.balance)"
     }
 

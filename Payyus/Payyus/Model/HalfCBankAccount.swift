@@ -20,9 +20,9 @@ class HalfCBankAccount: ModelType, HalfC {
     var yourPhoneNumber: String = ""
     var zipcode: String = ""
 
-    init(withBankAccount account: BankAccount){
+    init(withBankAccount account: PlaidBankAccount){
         bankName = account.bankName
-        bankRoutingNumber = account.routingNumber
+        bankRoutingNumber = account.accountRouting
         bankAccountNumber = account.accountNumber
         yourPhoneNumber = account.info?.phoneNumber ?? ""
         zipcode = account.info?.zipcode ?? ""

@@ -28,16 +28,20 @@
 		138625FA205F926C002866AB /* CommonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138625F9205F926C002866AB /* CommonHelper.swift */; };
 		138625FC205F956E002866AB /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138625FB205F956E002866AB /* LocalStorage.swift */; };
 		138625FE205FA0F5002866AB /* HalfCCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138625FD205FA0F5002866AB /* HalfCCard.swift */; };
-		13862600205FA54B002866AB /* BankAccountSecurityHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138625FF205FA54B002866AB /* BankAccountSecurityHelper.swift */; };
+		13862600205FA54B002866AB /* BankAccountSecurity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138625FF205FA54B002866AB /* BankAccountSecurity.swift */; };
 		13862602205FB501002866AB /* HalfCBankAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13862601205FB501002866AB /* HalfCBankAccount.swift */; };
 		13862604205FBA13002866AB /* HalfC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13862603205FBA13002866AB /* HalfC.swift */; };
+		138CF4F72064937F0086D2BF /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 138CF4F62064937F0086D2BF /* iCarousel.m */; };
+		138CF4F9206498350086D2BF /* Advert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138CF4F8206498350086D2BF /* Advert.swift */; };
+		138CF50E2064D7A30086D2BF /* Pods_Payyus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 138CF50F2064D7A30086D2BF /* Pods_Payyus.framework */; };
+		138CF515206501060086D2BF /* BankAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138CF514206501060086D2BF /* BankAccount.swift */; };
 		139A47EB205B628D00C831C7 /* Merchant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139A47EA205B628D00C831C7 /* Merchant.swift */; };
 		139A47ED205B62F200C831C7 /* SampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139A47EC205B62F200C831C7 /* SampleData.swift */; };
 		139A47F0205B664F00C831C7 /* MerchantTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139A47EF205B664F00C831C7 /* MerchantTableViewCell.swift */; };
 		139A47F2205B677600C831C7 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139A47F1205B677600C831C7 /* UITextField+Extension.swift */; };
 		139A47F4205B7CCB00C831C7 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139A47F3205B7CCB00C831C7 /* String+Extension.swift */; };
 		139A47F8205BAAF400C831C7 /* BankConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139A47F7205BAAF400C831C7 /* BankConnectionViewController.swift */; };
-		139A47FA205BCA0C00C831C7 /* BankAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139A47F9205BCA0C00C831C7 /* BankAccount.swift */; };
+		139A47FA205BCA0C00C831C7 /* PlaidBankAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139A47F9205BCA0C00C831C7 /* PlaidBankAccount.swift */; };
 		84282D632059229600F7F806 /* SetupPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84282D622059229600F7F806 /* SetupPhoneViewController.swift */; };
 		84282D652059248600F7F806 /* SetupSecurityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84282D642059248600F7F806 /* SetupSecurityViewController.swift */; };
 		84282D672059254B00F7F806 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84282D662059254B00F7F806 /* UIView+Extension.swift */; };
@@ -68,8 +72,20 @@
 		84C090DC20591D8E003D7FB1 /* OpenSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84C090C920591D8D003D7FB1 /* OpenSans-BoldItalic.ttf */; };
 		84C090DD20591D8E003D7FB1 /* Oswald-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84C090CA20591D8D003D7FB1 /* Oswald-ExtraLight.ttf */; };
 		84C090DE20591D8E003D7FB1 /* Oswald-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 84C090CB20591D8D003D7FB1 /* Oswald-Light.ttf */; };
-		F21ACD5CD9BB2CD810B68304 /* Pods_Payyus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D08F40343CB0E04DBA0A5A2F /* Pods_Payyus.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		138CF50D2064D7580086D2BF /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		130F575B2062665000DCC836 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
@@ -93,16 +109,22 @@
 		138625F9205F926C002866AB /* CommonHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonHelper.swift; sourceTree = "<group>"; };
 		138625FB205F956E002866AB /* LocalStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorage.swift; sourceTree = "<group>"; };
 		138625FD205FA0F5002866AB /* HalfCCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfCCard.swift; sourceTree = "<group>"; };
-		138625FF205FA54B002866AB /* BankAccountSecurityHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankAccountSecurityHelper.swift; sourceTree = "<group>"; };
+		138625FF205FA54B002866AB /* BankAccountSecurity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankAccountSecurity.swift; sourceTree = "<group>"; };
 		13862601205FB501002866AB /* HalfCBankAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfCBankAccount.swift; sourceTree = "<group>"; };
 		13862603205FBA13002866AB /* HalfC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfC.swift; sourceTree = "<group>"; };
+		138CF4F42064937E0086D2BF /* Payyus-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Payyus-Bridging-Header.h"; sourceTree = "<group>"; };
+		138CF4F52064937F0086D2BF /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = "<group>"; };
+		138CF4F62064937F0086D2BF /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = "<group>"; };
+		138CF4F8206498350086D2BF /* Advert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Advert.swift; sourceTree = "<group>"; };
+		138CF50F2064D7A30086D2BF /* Pods_Payyus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_Payyus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		138CF514206501060086D2BF /* BankAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankAccount.swift; sourceTree = "<group>"; };
 		139A47EA205B628D00C831C7 /* Merchant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Merchant.swift; sourceTree = "<group>"; };
 		139A47EC205B62F200C831C7 /* SampleData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleData.swift; sourceTree = "<group>"; };
 		139A47EF205B664F00C831C7 /* MerchantTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantTableViewCell.swift; sourceTree = "<group>"; };
 		139A47F1205B677600C831C7 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		139A47F3205B7CCB00C831C7 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		139A47F7205BAAF400C831C7 /* BankConnectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankConnectionViewController.swift; sourceTree = "<group>"; };
-		139A47F9205BCA0C00C831C7 /* BankAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankAccount.swift; sourceTree = "<group>"; };
+		139A47F9205BCA0C00C831C7 /* PlaidBankAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaidBankAccount.swift; sourceTree = "<group>"; };
 		326A62FBEB8AED19A4AB10DA /* Pods-Payyus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Payyus.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Payyus/Pods-Payyus.debug.xcconfig"; sourceTree = "<group>"; };
 		84282D622059229600F7F806 /* SetupPhoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupPhoneViewController.swift; sourceTree = "<group>"; };
 		84282D642059248600F7F806 /* SetupSecurityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupSecurityViewController.swift; sourceTree = "<group>"; };
@@ -137,7 +159,6 @@
 		84C090CA20591D8D003D7FB1 /* Oswald-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-ExtraLight.ttf"; sourceTree = "<group>"; };
 		84C090CB20591D8D003D7FB1 /* Oswald-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Oswald-Light.ttf"; sourceTree = "<group>"; };
 		B46BE9BF3A54F480808ADA77 /* Pods-Payyus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Payyus.release.xcconfig"; path = "Pods/Target Support Files/Pods-Payyus/Pods-Payyus.release.xcconfig"; sourceTree = "<group>"; };
-		D08F40343CB0E04DBA0A5A2F /* Pods_Payyus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Payyus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,7 +166,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F21ACD5CD9BB2CD810B68304 /* Pods_Payyus.framework in Frameworks */,
+				138CF50E2064D7A30086D2BF /* Pods_Payyus.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				13514A76205A58BA00EE12FC /* APIService.swift */,
+				138625FF205FA54B002866AB /* BankAccountSecurity.swift */,
 				13514A79205A58BB00EE12FC /* AppConfiguration.swift */,
 				13514A7A205A58BB00EE12FC /* AppServices */,
 				139A47EC205B62F200C831C7 /* SampleData.swift */,
@@ -177,12 +199,14 @@
 				13514A8C205A5CBE00EE12FC /* ModelType.swift */,
 				13514A92205A75CF00EE12FC /* Account.swift */,
 				139A47EA205B628D00C831C7 /* Merchant.swift */,
-				139A47F9205BCA0C00C831C7 /* BankAccount.swift */,
+				139A47F9205BCA0C00C831C7 /* PlaidBankAccount.swift */,
 				138625F7205F67DC002866AB /* BankAccountInfo.swift */,
 				138625FD205FA0F5002866AB /* HalfCCard.swift */,
 				13862601205FB501002866AB /* HalfCBankAccount.swift */,
 				13862603205FBA13002866AB /* HalfC.swift */,
 				130F575D2062724E00DCC836 /* SecretKey.swift */,
+				138CF4F8206498350086D2BF /* Advert.swift */,
+				138CF514206501060086D2BF /* BankAccount.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -195,6 +219,16 @@
 				130F575B2062665000DCC836 /* APIConstants.swift */,
 			);
 			path = AppServices;
+			sourceTree = "<group>";
+		};
+		138CF4F32064934D0086D2BF /* iCarousel */ = {
+			isa = PBXGroup;
+			children = (
+				138CF4F52064937F0086D2BF /* iCarousel.h */,
+				138CF4F62064937F0086D2BF /* iCarousel.m */,
+				138CF4F42064937E0086D2BF /* Payyus-Bridging-Header.h */,
+			);
+			path = iCarousel;
 			sourceTree = "<group>";
 		};
 		139A47EE205B663B00C831C7 /* View */ = {
@@ -283,6 +317,7 @@
 		84C090B12058D3F6003D7FB1 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				138CF4F32064934D0086D2BF /* iCarousel */,
 				131D8A8920610B49000B639D /* AutoCompleteTextField */,
 				13514A90205A6A8900EE12FC /* UIStoryboardExtension.swift */,
 				13514A8E205A5E0800EE12FC /* UIButtonExtension.swift */,
@@ -291,7 +326,6 @@
 				139A47F3205B7CCB00C831C7 /* String+Extension.swift */,
 				138625F9205F926C002866AB /* CommonHelper.swift */,
 				138625FB205F956E002866AB /* LocalStorage.swift */,
-				138625FF205FA54B002866AB /* BankAccountSecurityHelper.swift */,
 				13622B162063B50900ED0E38 /* UIImage+Extension.swift */,
 			);
 			path = Helper;
@@ -347,7 +381,7 @@
 		C4EE61271F40B8760D6C0243 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				D08F40343CB0E04DBA0A5A2F /* Pods_Payyus.framework */,
+				138CF50F2064D7A30086D2BF /* Pods_Payyus.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -367,6 +401,7 @@
 				077669E03BEBB4691D33FDB0 /* [CP] Copy Pods Resources */,
 				84C090B32058DE62003D7FB1 /* ShellScript */,
 				131C126E206003F0007B397F /* Prepare for Distribution */,
+				138CF50D2064D7580086D2BF /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -389,6 +424,7 @@
 				TargetAttributes = {
 					84C090932058D29E003D7FB1 = {
 						CreatedOnToolsVersion = 9.1;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Manual;
 					};
 				};
@@ -518,6 +554,7 @@
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework",
 				"${BUILT_PRODUCTS_DIR}/LGSideMenuController/LGSideMenuController.framework",
 				"${PODS_ROOT}/Plaid/ios/LinkKit.framework",
+				"${BUILT_PRODUCTS_DIR}/RNCryptor/RNCryptor.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -528,6 +565,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManager.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LGSideMenuController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LinkKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNCryptor.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -551,6 +589,7 @@
 				13862604205FBA13002866AB /* HalfC.swift in Sources */,
 				139A47ED205B62F200C831C7 /* SampleData.swift in Sources */,
 				138625FC205F956E002866AB /* LocalStorage.swift in Sources */,
+				138CF515206501060086D2BF /* BankAccount.swift in Sources */,
 				84C090B62058DF9A003D7FB1 /* LoginViewController.swift in Sources */,
 				84282D652059248600F7F806 /* SetupSecurityViewController.swift in Sources */,
 				84C090982058D29E003D7FB1 /* AppDelegate.swift in Sources */,
@@ -560,11 +599,12 @@
 				131D8A852060C107000B639D /* SetupBankBillingViewController.swift in Sources */,
 				84282D672059254B00F7F806 /* UIView+Extension.swift in Sources */,
 				84282D6B20592C0800F7F806 /* SetupLastStepViewController.swift in Sources */,
+				138CF4F72064937F0086D2BF /* iCarousel.m in Sources */,
 				13514A86205A58BB00EE12FC /* AppResponeData.swift in Sources */,
 				84C090AA2058D2FC003D7FB1 /* BaseViewController.swift in Sources */,
 				139A47F8205BAAF400C831C7 /* BankConnectionViewController.swift in Sources */,
 				139A47F4205B7CCB00C831C7 /* String+Extension.swift in Sources */,
-				13862600205FA54B002866AB /* BankAccountSecurityHelper.swift in Sources */,
+				13862600205FA54B002866AB /* BankAccountSecurity.swift in Sources */,
 				13862602205FB501002866AB /* HalfCBankAccount.swift in Sources */,
 				13514A8F205A5E0900EE12FC /* UIButtonExtension.swift in Sources */,
 				13514A83205A58BB00EE12FC /* AppConfiguration.swift in Sources */,
@@ -576,8 +616,9 @@
 				138625FE205FA0F5002866AB /* HalfCCard.swift in Sources */,
 				13514A91205A6A8900EE12FC /* UIStoryboardExtension.swift in Sources */,
 				13514A80205A58BB00EE12FC /* APIService.swift in Sources */,
-				139A47FA205BCA0C00C831C7 /* BankAccount.swift in Sources */,
+				139A47FA205BCA0C00C831C7 /* PlaidBankAccount.swift in Sources */,
 				13622B172063B50900ED0E38 /* UIImage+Extension.swift in Sources */,
+				138CF4F9206498350086D2BF /* Advert.swift in Sources */,
 				84282D632059229600F7F806 /* SetupPhoneViewController.swift in Sources */,
 				138625F8205F67DC002866AB /* BankAccountInfo.swift in Sources */,
 			);
@@ -718,20 +759,28 @@
 			buildSettings = {
 				APP_DISPLAY_NAME = "Debug-Payyus";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Nam Tran (8MP2E2PHQ7)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = X2RQ5B4BL9;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Payyus/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LINK_ENV = Sandbox;
-				LINK_KEY = 3ad4e8675129df48692a7f288f992d;
+				LINK_KEY = efa007c8ef830d6b43adaef901770c;
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.payyus.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "4feda684-0d51-4888-89bd-5862934245c3";
 				PROVISIONING_PROFILE_SPECIFIER = payyus_nus_dev;
+				SWIFT_OBJC_BRIDGING_HEADER = "Payyus/Helper/iCarousel/Payyus-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -743,20 +792,27 @@
 			buildSettings = {
 				APP_DISPLAY_NAME = Payyus;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = X2RQ5B4BL9;
 				ENABLE_TESTABILITY = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Payyus/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LINK_ENV = Sandbox;
-				LINK_KEY = 3ad4e8675129df48692a7f288f992d;
+				LINK_KEY = efa007c8ef830d6b43adaef901770c;
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -D RELEASE";
 				PRODUCT_BUNDLE_IDENTIFIER = com.payyus.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "67f1a322-bba0-4c3d-aa22-34ebc6e7d9a2";
 				PROVISIONING_PROFILE_SPECIFIER = payyus_nus_adhoc;
+				SWIFT_OBJC_BRIDGING_HEADER = "Payyus/Helper/iCarousel/Payyus-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

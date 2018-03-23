@@ -16,11 +16,20 @@ class SamepleData {
         ]
     }
 
-    static func bankAccountsList() -> [BankAccount] {
+    static func bankAccountsList() -> [PlaidBankAccount] {
         return [
-            BankAccount(accountId: "1", name: "David", accountNumber: "233322233222", balance: 100 ),
-            BankAccount(accountId: "2", name: "David 1", accountNumber: "233322233233", balance: 500 ),
-            BankAccount(accountId: "3", name: "David 2", accountNumber: "233322233288", balance: 12200 )
+            PlaidBankAccount(accountId: "1", name: "David", accountNumber: "233322233222", balance: 100 ),
+            PlaidBankAccount(accountId: "2", name: "David 1", accountNumber: "233322233233", balance: 500 ),
+            PlaidBankAccount(accountId: "3", name: "David 2", accountNumber: "233322233288", balance: 12200 )
+        ]
+    }
+    static func advertsList() -> [Advert] {
+        return [
+            Advert(image: "dish3", title: "Join Sammy’s\n Get $5 FREE to Start!"),
+            Advert(image: "dish1", title: "Join The Hake\n Get $5 FREE to Start!"),
+            Advert(image: "dish2", title: "Join The Beer\n Get $10 FREE to Start!"),
+
+
         ]
     }
 }

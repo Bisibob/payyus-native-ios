@@ -14,14 +14,14 @@ class BankAccountSelectionViewController: BaseViewController {
     @IBOutlet weak var btnDone: UIButton!
     var publicToken: String?
 
-    private var bankAccounts: [BankAccount] = []
-    private var selectedAccount: BankAccount?
+    private var bankAccounts: [PlaidBankAccount] = []
+    private var selectedAccount: PlaidBankAccount?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        publicToken = "fsdaf"
+//        publicToken = "public-sandbox-d5bb4087-f690-4120-84ae-bf34eb4ba014"
         setupView()
         loadBankAccount()
     }
@@ -35,7 +35,9 @@ class BankAccountSelectionViewController: BaseViewController {
     }
 
     @IBAction func onDone(_ sender: Any) {
-        
+//        saveBankAccount(selectedAccount!)
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.moveToMainViewController()
     }
 
 
@@ -60,34 +62,44 @@ class BankAccountSelectionViewController: BaseViewController {
         }
     }
 
-    private func saveBankAccount(_ account: BankAccount) {
+    private func saveBankAccount(_ account: PlaidBankAccount) {
         guard let info = account.info else {
             AppConfiguration.shared.bankData = account
-            //TODO: move to setup bank billing
+            //move to setup bank billing
+            moveToSetupBankBilling(info: nil)
             return
         }
         if info.address.isEmpty || info.holderName.isEmpty || info.phoneNumber.isEmpty || info.zipcode.isEmpty {
-            //TODO: move to setup bank billing
+            //move to setup bank billing
+            moveToSetupBankBilling(info: info)
+            return
         }
-        if let loginAccount = AppConfiguration.shared.account {
-//            AppAPIService.getSecretKey(account: loginAccount, withCHKey: true, completionHandler: { (result) in
-//                switch (result) {
-//                case .success(let u):
-//                    break
-//                case .error(let error):
-//                    break
-//                }
-//            })
-        }
-
+       saveSelectedBankAccount()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    private func moveToSetupBankBilling(info: BankAccountInfo?) {
+        let setupBankBillingVC = UIStoryboard.Main.setupBankBillingViewController() as! SetupBankBillingViewController
+        setupBankBillingVC.accountInfo = info
+        setupBankBillingVC.cancelHandler = { viewController in
+            viewController.navigationController?.popViewController(animated: true)
+        }
+        setupBankBillingVC.doneHandler = {[unowned self] (viewController, bankInfo) in
+            self.selectedAccount?.info = bankInfo
+            self.saveSelectedBankAccount()
+            viewController.navigationController?.popViewController(animated: true)
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.moveToMainViewController()
+        }
+        navigationController?.pushViewController(setupBankBillingVC, animated: true)
     }
+
     
 
+    private func saveSelectedBankAccount() {
+        if let loginAccount = AppConfiguration.shared.account {
+//            AppAPIService.
+        }
+    }
     /*
     // MARK: - Navigation
 

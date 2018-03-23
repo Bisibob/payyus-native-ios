@@ -9,6 +9,7 @@
 import UIKit
 import Alamofire
 
+
 class SetupBankBillingViewController: BaseViewController {
     @IBOutlet weak var tfShopperFirstName: UITextField!
     @IBOutlet weak var tfShopperLastName: UITextField!
@@ -25,6 +26,10 @@ class SetupBankBillingViewController: BaseViewController {
     private var loadZipCodeTask: DataRequest?
     private lazy var USStates: [(value: String, data: String)] = CommonHelper.USStates()
     private var suggestStates: [(value: String, data: String)] = []
+
+    var accountInfo: BankAccountInfo? = BankAccountInfo()
+    var doneHandler: ((UIViewController, BankAccountInfo) -> ())?
+    var cancelHandler: ((UIViewController) ->())?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -103,11 +108,28 @@ class SetupBankBillingViewController: BaseViewController {
     }
 
     @IBAction func onCancel(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
+        guard let cancelHandler = cancelHandler else {
+            self.navigationController?.popViewController(animated: true)
+            return
+        }
+        cancelHandler(self)
+
     }
 
     @IBAction func onDone(_ sender: Any) {
         //TODO: Save data to database
+        guard let accountInfo = accountInfo else {
+            return
+        }
+        guard let doneHandler = doneHandler else {
+            self.navigationController?.popViewController(animated: true)
+            return
+        }
+        doneHandler(self, accountInfo)
+    }
+
+    private func valid(){
+        
     }
 
     private func fetchAutoCompleteZipCode(_ zipCode: String) {

@@ -10,6 +10,7 @@ PODS:
   - IQKeyboardManager (5.0.7)
   - LGSideMenuController (2.1.1)
   - Plaid (1.1.6)
+  - RNCryptor (5.0.2)
   - SwiftyJSON (4.0.0)
 
 DEPENDENCIES:
@@ -21,6 +22,7 @@ DEPENDENCIES:
   - IQKeyboardManager
   - LGSideMenuController
   - Plaid
+  - RNCryptor (~> 5.0)
   - SwiftyJSON
 
 SPEC CHECKSUMS:
@@ -32,8 +34,9 @@ SPEC CHECKSUMS:
   IQKeyboardManager: 0bfa4607d39924116b5c0c8b55b5d789288b5cba
   LGSideMenuController: ae40c80983ab8b8801c7cef0a6804d43aaa72d45
   Plaid: 254ef68f0ec28fc48627504aefb0c18dde5d08d8
+  RNCryptor: 59b9f92e9fa8a1af74c32dc6b1af5e30ff5e1b64
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: bf3be5a54aa0977b0b4a21b4b3b17643d82c5254
+PODFILE CHECKSUM: 7659c8be732ce6ad124902adee960368de056a1b
 
 COCOAPODS: 1.4.0

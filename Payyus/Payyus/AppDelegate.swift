@@ -23,8 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared().isEnableAutoToolbar = false
         // Override point for customization after application launch.
         if let account = AppConfiguration.shared.account {
-            if account.mainMerchantId.isEmpty {
-//                AppConfiguration.shared.account?.phone = "17433333364"
+            if AppConfiguration.shared.lastMerchant == nil {
                 let setupMerchantVC = UIStoryboard.Main.setupMerchantViewController()
                 let navigation = UINavigationController(rootViewController: setupMerchantVC)
                 navigation.isNavigationBarHidden = true
@@ -35,13 +34,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 navigation.isNavigationBarHidden = true
                 self.window?.rootViewController = navigation
             }else {
-                let mainVC = UIStoryboard.Main.mainViewController()
-                let navigation = UINavigationController(rootViewController: mainVC)
-//                navigation.isNavigationBarHidden = true
-                self.window?.rootViewController = navigation
+//                let mainVC = UIStoryboard.Main.mainViewController()
+//                let navigation = UINavigationController(rootViewController: mainVC)
+////                navigation.isNavigationBarHidden = true
+//                self.window?.rootViewController = navigation
             }
         }
         return true
+    }
+
+    func moveToMainViewController() {
+        let mainVC = UIStoryboard.Main.mainViewController()
+        let navigation = UINavigationController(rootViewController: mainVC)
+        navigation.isNavigationBarHidden = true
+        self.window?.rootViewController = navigation
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

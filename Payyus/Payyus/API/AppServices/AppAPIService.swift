@@ -42,30 +42,30 @@ class AppAPIService {
         }
     }
 
-    static func getSecretKey(phone: String, pinCode: String, withCHKey: Bool = false, completionHandler: @escaping ((Result<Bool>) -> Void)) {
-        let params = ["phone" : phone, "pincode": pinCode]
-        let url = APIService.getAPIURL(apiName: APIConstants.secretKey.rawValue)
-        _ = APIService.requestCheckErrorData(url: url, method: .post, parameters: params, completionHandler: { (message, data) in
-            let secretKey = SecretKey(data: data)
-            print(secretKey.secretKey)
-            var hasSecretKey = false
-            if !secretKey.secretKey.isEmpty {//phone and pincode valid
-                hasSecretKey = true
-//                AppConfiguration.shared.saveToken(token: secretKey.token)
-            }else {//new phone or wrong pass
-                let result = ResponeResult(data: data)
-                if result.data == "new_phone" {
-
-                }else {
-
-                }
-            }
-            completionHandler(.success(hasSecretKey))
-        }) { (error) in
-            print("error: \(error)")
-            completionHandler(.error(error))
-        }
-    }
+//    static func getSecretKey(phone: String, pinCode: String, withCHKey: Bool = false, completionHandler: @escaping ((Result<Bool>) -> Void)) {
+//        let params = ["phone" : phone, "pincode": pinCode]
+//        let url = APIService.getAPIURL(apiName: APIConstants.secretKey.rawValue)
+//        _ = APIService.requestCheckErrorData(url: url, method: .post, parameters: params, completionHandler: { (message, data) in
+//            let secretKey = SecretKey(data: data)
+//            print(secretKey.secretKey)
+//            var hasSecretKey = false
+//            if !secretKey.secretKey.isEmpty {//phone and pincode valid
+//                hasSecretKey = true
+////                AppConfiguration.shared.saveToken(token: secretKey.token)
+//            }else {//new phone or wrong pass
+//                let result = ResponeResult(data: data)
+//                if result.data == "new_phone" {
+//
+//                }else {
+//
+//                }
+//            }
+//            completionHandler(.success(hasSecretKey))
+//        }) { (error) in
+//            print("error: \(error)")
+//            completionHandler(.error(error))
+//        }
+//    }
     static func login(phone: String, pinCode: String, completionHandler: @escaping ((Result<Bool>) -> Void)) {
         let params = ["phone" : phone, "pincode": pinCode, "login": "1"]
         let url = APIService.getAPIURL(apiName: APIConstants.secretKey.rawValue)
@@ -137,23 +137,46 @@ class AppAPIService {
     }
 
     // MARK: Payment
-    static func plaidAccounts(publicToken: String, completionHandler: @escaping ((Results<BankAccount>) -> Void)){
-        DispatchQueue.global().async {
-            Thread.sleep(forTimeInterval: 1)
-            DispatchQueue.main.async {
-                let bankAccount = SamepleData.bankAccountsList()
-                completionHandler(.success(bankAccount))
-            }
-        }
+    static func plaidAccounts(publicToken: String, completionHandler: @escaping ((Results<PlaidBankAccount>) -> Void)){
+        let url = APIService.getAPIURL(apiName: APIConstants.plaidAccounts.rawValue)
+        let params = ["ptoken" : publicToken]
+        _ = APIService.authRequest(url: url, method: .post, parameters: params, completionHandler: { (data) in
+            let bankAccount = [PlaidBankAccount](data: data, conversionOptions: ConversionOptions.DefaultDeserialize, forKeyPath: "accounts")
+            completionHandler(.success(bankAccount))
+        }, errorHandler: { (error) in
+            print(error)
+        })
+//        DispatchQueue.global().async {
+//            Thread.sleep(forTimeInterval: 1)
+//            DispatchQueue.main.async {
+//                let bankAccount = SamepleData.bankAccountsList()
+//                completionHandler(.success(bankAccount))
+//            }
+//        }
+
     }
 
     static func getZipCodes(zipCode: String, completionHandler: @escaping (([DataValue]) -> Void)) -> DataRequest? {
-        return APIService.request(url: AppConfiguration.shared.baseURL()+"getZipCodes", method: .post, parameters: ["query":zipCode], completionHandler: { (data) in
+        let url = APIService.getAPIURL(apiName: APIConstants.getZipCodes.rawValue)
+        return APIService.request(url: url, method: .post, parameters: ["query":zipCode], completionHandler: { (data) in
 //            let string = String(data: data, encoding: String.Encoding.utf8)
             let zipCodes = [DataValue](data: data, conversionOptions: ConversionOptions.DefaultDeserialize, forKeyPath: "suggestions")
             completionHandler(zipCodes)
         }) { (error) in
             print("error")
+        }
+    }
+
+    static func saveSelectedBankAccount(account: PlaidBankAccount, completionHandler: @escaping ((Result<Bool>) -> Void)) {
+        let params = ["ch" : "1"]
+        let url = APIService.getAPIURL(apiName: APIConstants.secretKey.rawValue)
+        _ = APIService.requestCheckErrorData(url: url, method: .post, parameters: params, completionHandler: { (message, data) in
+            let secretKey = SecretKey(data: data)
+//            print(secretKey.secretKey)
+
+        }) { (error) in
+            print("error: \(error)")
+            completionHandler(.error(error))
         }
     }
 }

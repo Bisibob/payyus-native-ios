@@ -13,5 +13,6 @@ target 'Payyus' do
   pod 'IQKeyboardManager'
   pod 'Plaid'
   pod 'CryptoSwift'
+  pod 'RNCryptor', '~> 5.0'
   # Pods for Payyus
 end
