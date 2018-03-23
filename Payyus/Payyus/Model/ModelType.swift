@@ -31,40 +31,41 @@ class ModelType : EVObject {
     }
     
 }
+//
+//
+//extension Creatable where Self: ModelType {
+//    func createValue() -> [String : Any] {
+//        return self.toDictionary(Self.conversionSerializeOptions()) as! [String : Any]
+//    }
+//}
+//
+//extension Updateable where Self: ModelType {
+//
+//    func updateValue() -> [String : Any] {
+//        return self.toDictionary(Self.conversionSerializeOptions()) as! [String : Any]
+//    }
+//}
+//
+//extension Loginnable where Self: ModelType {
+//
+//    func loginParams() -> [String : Any] {
+//        return self.toDictionary(Self.conversionSerializeOptions()) as! [String : Any]
+//    }
+//
+//    func logoutParams() -> [String : Any] {
+//        return self.toDictionary(Self.conversionSerializeOptions()) as! [String : Any]
+//    }
+//}
+//
+//extension Registerrable where Self: ModelType {
+//    func registerParams() -> [String : Any] {
+//        return self.toDictionary(Self.conversionSerializeOptions()) as! [String : Any]
+//    }
+//}
+//
+//extension PasswordRefreshable where Self: ModelType {
+//    func passwordRefreshingParams() -> [String : Any] {
+//        return self.toDictionary(Self.conversionSerializeOptions()) as! [String : Any]
+//    }
+//}
 
-
-extension Creatable where Self: ModelType {
-    func createValue() -> [String : Any] {
-        return self.toDictionary(Self.conversionSerializeOptions()) as! [String : Any]
-    }
-}
-
-extension Updateable where Self: ModelType {
-
-    func updateValue() -> [String : Any] {
-        return self.toDictionary(Self.conversionSerializeOptions()) as! [String : Any]
-    }
-}
-
-extension Loginnable where Self: ModelType {
-
-    func loginParams() -> [String : Any] {
-        return self.toDictionary(Self.conversionSerializeOptions()) as! [String : Any]
-    }
-
-    func logoutParams() -> [String : Any] {
-        return self.toDictionary(Self.conversionSerializeOptions()) as! [String : Any]
-    }
-}
-
-extension Registerrable where Self: ModelType {
-    func registerParams() -> [String : Any] {
-        return self.toDictionary(Self.conversionSerializeOptions()) as! [String : Any]
-    }
-}
-
-extension PasswordRefreshable where Self: ModelType {
-    func passwordRefreshingParams() -> [String : Any] {
-        return self.toDictionary(Self.conversionSerializeOptions()) as! [String : Any]
-    }
-}

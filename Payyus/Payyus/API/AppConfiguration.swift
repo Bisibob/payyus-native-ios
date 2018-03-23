@@ -14,7 +14,7 @@ class AppConfiguration: NSObject {
     var phoneNumber: String?
     var pincode: String?
     var account: Account?
-//    private lazy var authentication: AuthenticationService = AppAuthenticationService()
+    
 
     private var _baseURL: String = ""
 
@@ -23,20 +23,28 @@ class AppConfiguration: NSObject {
     private override init() {
         super.init()
         loadConfig()
+        if let userAccount = UserDefaults.standard.object(forKey: "UserAccount") as? NSDictionary {
+            account = Account(dictionary: userAccount)
+        }
     }
 
+    func saveData() {
+        UserDefaults.standard.set(account?.toDictionary(), forKey: "UserAccount")
 
-//
-//    func obtainAuthentication() -> AuthenticationService {
-//        return authentication
-//    }
-
-
+    }
 
     func baseURL() -> String {
         return _baseURL
     }
 
+    func saveToken(phone: String, token: String) {
+        if !token.isEmpty {
+            if account == nil {
+                account = Account()
+            }
+            account?.token = token
+        }
+    }
 
     //MARK: Load config from file
     private func loadConfig() {

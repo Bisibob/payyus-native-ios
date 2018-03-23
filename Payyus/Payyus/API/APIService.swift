@@ -14,11 +14,8 @@ import Alamofire
 class APIService {
     //MARK: Request functions
 
-    static func getAPIURLString(apiName: String)-> String {
-        if AppConfiguration.shared.baseURL().hasSuffix("/") {
-            return  AppConfiguration.shared.baseURL() + apiName
-        }
-        return  AppConfiguration.shared.baseURL() + "/" + apiName
+    static func getAPIURL(apiName: String)-> String {
+        return  AppConfiguration.shared.baseURL() + apiName
     }
 
     static func request<T>(url: String, method: HTTPMethod, parameters: Parameters?, responeType: T.Type, completionHandler:@escaping ((Result<T>) -> Void)) -> DataRequest? where T : ModelType {
@@ -50,13 +47,24 @@ class APIService {
             errorHandler(error)
         }
     }
+    static func authRequest(url: String, method: HTTPMethod, parameters: [String : String]?, completionHandler:@escaping ((Data) -> Void), errorHandler: @escaping((String) -> Void )) -> DataRequest?  {
+        guard let account = AppConfiguration.shared.account else {
+            return nil
+        }
+        var params = ["phone": account.phone, "token": account.token]
+        if let parameters = parameters {
+            params = params.merging(parameters, uniquingKeysWith: { (current, _) -> String in
+                current
+            })
+        }
+        return request(url: url, method: method, parameters: params, completionHandler: completionHandler, errorHandler: errorHandler)
+    }
 
     static func request(url: String, method: HTTPMethod, parameters: Parameters?, completionHandler:@escaping ((Data) -> Void), errorHandler: @escaping((String) -> Void )) -> DataRequest?  {
         guard let urlString = url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) else {
             errorHandler("Unrecognized the link")
             return nil
         }
-
         let dataRequest = Alamofire.request(urlString, method: method, parameters: parameters, encoding: URLEncoding.default, headers: nil).responseJSON { (response) in
             if let error = response.error {
                 errorHandler(error.localizedDescription)

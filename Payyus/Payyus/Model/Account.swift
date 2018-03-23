@@ -10,5 +10,9 @@ import Foundation
 
 class Account: ModelType {
     var phone: String = ""
-    var password: String = ""
+//    var pinCode: String = ""
+    var token: String = ""
+    var secretKey: String = ""
+    var mainMerchantId: String = ""
+    var isSetupBank: Bool = false
 }

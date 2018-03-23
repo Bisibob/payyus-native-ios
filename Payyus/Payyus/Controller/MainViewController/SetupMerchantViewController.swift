@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+//import Alamofire
 class SetupMerchantViewController: BaseViewController {
     @IBOutlet weak var tfMerchantName: UITextField!
     
@@ -17,6 +17,7 @@ class SetupMerchantViewController: BaseViewController {
     private var selectedMerchant: Merchant?
     private var merchantsList: [Merchant] = []
     private var delayTypingTimer: Timer?
+//    private var requestDa
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +39,9 @@ class SetupMerchantViewController: BaseViewController {
     }
     
     @IBAction func onNext(_ sender: Any) {
+        if let selectedMerchant = selectedMerchant {
+            AppConfiguration.shared.account?.mainMerchantId = selectedMerchant.id
+        }
 
     }
     
@@ -66,7 +70,7 @@ class SetupMerchantViewController: BaseViewController {
     func searchMerchant(keyword: String){
         selectedMerchant = nil
         btnNext.isEnabled = false
-        AppAPIService.searchMerchant(name: keyword) {[weak self] (result) in
+        _ = AppAPIService.searchMerchant(name: keyword) {[weak self] (result) in
             guard let strongSelf = self else {
                 return
             }
@@ -86,7 +90,7 @@ extension SetupMerchantViewController:UITextFieldDelegate{
 
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let updatedText = textField.textShouldChangeCharactersIn(range, replacementString: string)
-        if updatedText.count > 4 {
+        if updatedText.count >= 4 {
             scheduleSearchMerchant(timeInterval: 0.5)
             showTableView(true)
         }else if updatedText.count == 0{
@@ -116,7 +120,7 @@ extension SetupMerchantViewController: UITableViewDelegate, UITableViewDataSourc
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedMerchant = merchantsList[indexPath.row]
-        tfMerchantName.text = selectedMerchant?.name
+        tfMerchantName.text = selectedMerchant?.merchant
         showTableView(false)
         btnNext.isEnabled = true
 

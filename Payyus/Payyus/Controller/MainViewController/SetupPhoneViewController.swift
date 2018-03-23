@@ -32,6 +32,8 @@ class SetupPhoneViewController: BaseViewController {
         
         tfDigitCode.attributedPlaceholder = NSAttributedString(string: tfDigitCodePlaceholder, attributes: [NSAttributedStringKey.foregroundColor: UIColor.init(red: 112/255, green: 112/255, blue: 112/255, alpha: 1.0)])
         enableDigitCode(false)
+//        tfPhoneNumber.text = "17433333364"
+//        tfDigitCode.text = "898372"
         btnSend.addCorner()
         btnNext.addCorner()
         tfPhoneNumber.delegate = self
@@ -97,7 +99,8 @@ class SetupPhoneViewController: BaseViewController {
             strongSelf.hiddenLoading()
             switch result {
             case .success():
-                let setupPasswordVC = UIStoryboard.Main.setupPasswordViewController()
+                let setupPasswordVC = UIStoryboard.Main.setupPasswordViewController() as! SetupSecurityViewController
+                setupPasswordVC.phoneNumber = strongSelf.tfPhoneNumber.text
                 strongSelf.navigationController?.pushViewController(setupPasswordVC, animated: true)
                 break
             case .error(let error):

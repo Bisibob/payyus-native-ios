@@ -70,14 +70,14 @@ class BankAccountSelectionViewController: BaseViewController {
             //TODO: move to setup bank billing
         }
         if let loginAccount = AppConfiguration.shared.account {
-            AppAPIService.getSecretKey(account: loginAccount, withCHKey: true, completionHandler: { (result) in
-                switch (result) {
-                case .success(let u):
-                    break
-                case .error(let error):
-                    break
-                }
-            })
+//            AppAPIService.getSecretKey(account: loginAccount, withCHKey: true, completionHandler: { (result) in
+//                switch (result) {
+//                case .success(let u):
+//                    break
+//                case .error(let error):
+//                    break
+//                }
+//            })
         }
 
     }

@@ -11,8 +11,10 @@ import EVReflection
 
 class ResponeResult: ModelType {
 
-    var success: Bool = false
+    var status: Int = 0
     var message: String = ""
+    var error: String = ""
+    var data: String = ""
 
 }
 
@@ -40,11 +42,16 @@ class AppResponeData {
     
     static func checkErrorResponeData(data: Data, successHandler:@escaping ((String, Data) -> Void), errorHandler:@escaping ((String) -> Void)){
         let result = ResponeResult(data: data)
-        if !result.success {
-            errorHandler(result.message)
-        } else {
-            successHandler(result.message, data)
-       }
+        //TODO: Check error here
+        if !result.error.isEmpty {
+            errorHandler(result.error)
+        }else {
+            if result.status == -1 {
+                errorHandler(result.message)
+            } else {
+                successHandler(result.message, data)
+            }
+        }
     }
     
 }

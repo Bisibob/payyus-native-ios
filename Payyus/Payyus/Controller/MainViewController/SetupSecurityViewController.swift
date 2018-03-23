@@ -12,6 +12,7 @@ class SetupSecurityViewController: BaseViewController {
 
     @IBOutlet weak var btnNext: UIButton!
     @IBOutlet weak var tfPassword: UITextField!
+    var phoneNumber: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,29 +37,74 @@ class SetupSecurityViewController: BaseViewController {
     
     @IBAction func onNext(_ sender: Any) {
         self.showLoading()
-        let account = Account()
-        AppAPIService.getSecretKey(account: account) {[weak self] (result) in
+        guard let phoneNumber = phoneNumber, let pinCode = tfPassword.text else {
+            return
+        }
+        AppAPIService.login(phone: phoneNumber, pinCode: pinCode) {[weak self] (result) in
             guard let strongSelf = self else {
                 return
             }
             strongSelf.hiddenLoading()
             switch result {
-            case .success():
-                let merchantVC = UIStoryboard.Main.setupMerchantViewController()
-                strongSelf.navigationController?.pushViewController(merchantVC, animated: true)
-                break
+            case .success(let canMoveToMerchant):
+                if canMoveToMerchant {
+                    strongSelf.goToSelectMerchantViewController()
+                }else {
+                    strongSelf.showAlertToRegisterPhone()
+                }
             case .error(let error):
                 strongSelf.showError(error)
-                break
             }
         }
+//        AppAPIService.getSecretKey(phone: phoneNumber, pinCode: pinCode) {[weak self] (result) in
+//            guard let strongSelf = self else {
+//                return
+//            }
+//            strongSelf.hiddenLoading()
+//            switch result {
+//            case .success(let canMoveToMerchant):
+//                if canMoveToMerchant {
+//                    strongSelf.goToSelectMerchantViewController()
+//                }else {
+//                    strongSelf.showAlertToRegisterPhone()
+//                }
+//            case .error(let error):
+//                strongSelf.showError(error)
+//            }
+//        }
+    }
+
+    func showAlertToRegisterPhone() {
+        showAlert(title: "Warning", message: "", cancelTitle: "Cancel", doneTitle: "Confirm") {[unowned self] (_) in
+            self.showLoading()
+            guard let phoneNumber = self.phoneNumber, let pinCode = self.tfPassword.text else {
+                return
+            }
+            AppAPIService.registerUser(phone: phoneNumber, pinCode: pinCode, completionHandler: {[weak self] (result) in
+                guard let strongSelf = self else {
+                    return
+                }
+                strongSelf.hiddenLoading()
+                switch result {
+                case .success(_):
+                    strongSelf.goToSelectMerchantViewController()
+                case .error(let error):
+                    strongSelf.showError(error)
+                }
+            })
+        }
+    }
+
+    func goToSelectMerchantViewController() {
+        let merchantVC = UIStoryboard.Main.setupMerchantViewController()
+        navigationController?.pushViewController(merchantVC, animated: true)
     }
 }
 
 extension SetupSecurityViewController: UITextFieldDelegate{
 
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        btnNext.isEnabled = textField.text?.checkLength(comparison: .greaterThan, length: 6, shouldChangeCharactersIn: range, replacementString: string) ?? false
+        btnNext.isEnabled = textField.text?.checkLength(comparison: .greaterThanOrEqualTo, length: 6, shouldChangeCharactersIn: range, replacementString: string) ?? false
         return true
     }
 

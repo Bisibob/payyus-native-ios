@@ -10,9 +10,9 @@ import Foundation
 class SamepleData {
     static func merchantsList() -> [Merchant] {
         return [
-            Merchant(name: "Kelly Koenecke", logo: "samplelogo1"),
-            Merchant(name: "The Burger Bar", logo: "samplelogo2"),
-            Merchant(name: "Mirrison's", logo: "samplelogo3")
+//            Merchant(name: "Kelly Koenecke", logo: "samplelogo1"),
+//            Merchant(name: "The Burger Bar", logo: "samplelogo2"),
+//            Merchant(name: "Mirrison's", logo: "samplelogo3")
         ]
     }
 

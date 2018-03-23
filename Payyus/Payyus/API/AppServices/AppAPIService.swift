@@ -17,13 +17,12 @@ class AppAPIService {
             completionHandler(.error("Phone number can't empty!"))
             return
         }
-        DispatchQueue.global().async {
-            Thread.sleep(forTimeInterval: 1)
-            DispatchQueue.main.async {
-                completionHandler(.success(()))
-            }
+        let url = APIService.getAPIURL(apiName: APIConstants.addPhone.rawValue)
+        _ = APIService.requestCheckErrorData(url: url, method: .post, parameters: ["phone": phone], completionHandler: { (message, data) in
+            completionHandler(.success(()))
+        }) { (error) in
+            completionHandler(.error(error))
         }
-        let dic = ["phone" : phone]
 
 
     }
@@ -33,25 +32,107 @@ class AppAPIService {
             completionHandler(.error("Verify code can't empty!"))
             return
         }
-        let dic = ["phone" : phone, "code": code]
-        completionHandler(.success(()))
+        let params = ["phone" : phone, "code": code]
+        let url = APIService.getAPIURL(apiName: APIConstants.verifyPhone.rawValue)
+        _ = APIService.requestCheckErrorData(url: url, method: .post, parameters:params, completionHandler: { (message, data) in
+            print(String(data: data, encoding: String.Encoding.utf8) ?? "")
+            completionHandler(.success(()))
+        }) { (error) in
+            completionHandler(.error(error))
+        }
     }
 
-    static func getSecretKey(account: Account, withCHKey: Bool = false, completionHandler: @escaping ((Result<Void>) -> Void)) {
-         completionHandler(.success(()))
+    static func getSecretKey(phone: String, pinCode: String, withCHKey: Bool = false, completionHandler: @escaping ((Result<Bool>) -> Void)) {
+        let params = ["phone" : phone, "pincode": pinCode]
+        let url = APIService.getAPIURL(apiName: APIConstants.secretKey.rawValue)
+        _ = APIService.requestCheckErrorData(url: url, method: .post, parameters: params, completionHandler: { (message, data) in
+            let secretKey = SecretKey(data: data)
+            print(secretKey.secretKey)
+            var hasSecretKey = false
+            if !secretKey.secretKey.isEmpty {//phone and pincode valid
+                hasSecretKey = true
+//                AppConfiguration.shared.saveToken(token: secretKey.token)
+            }else {//new phone or wrong pass
+                let result = ResponeResult(data: data)
+                if result.data == "new_phone" {
+
+                }else {
+
+                }
+            }
+            completionHandler(.success(hasSecretKey))
+        }) { (error) in
+            print("error: \(error)")
+            completionHandler(.error(error))
+        }
+    }
+    static func login(phone: String, pinCode: String, completionHandler: @escaping ((Result<Bool>) -> Void)) {
+        let params = ["phone" : phone, "pincode": pinCode, "login": "1"]
+        let url = APIService.getAPIURL(apiName: APIConstants.secretKey.rawValue)
+        _ = APIService.requestCheckErrorData(url: url, method: .post, parameters: params, completionHandler: { (message, data) in
+            let secretKey = SecretKey(data: data)
+//            var hasSecretKey = false
+            if !secretKey.secretKey.isEmpty {//phone and pincode valid
+//                hasSecretKey = true
+                AppConfiguration.shared.saveToken(phone: phone, token: secretKey.token)
+                completionHandler(.success(true))
+                return
+            }else {//new phone or wrong pass
+                let result = ResponeResult(data: data)
+                if result.data == "new_phone" {
+                    self.registerUser(phone: phone, pinCode: pinCode, completionHandler: { (result) in
+                        switch result {
+                        case .success(_):
+                            completionHandler(.success(true))
+                        case .error(let error):
+                            completionHandler(.error(error))
+                        }
+                    })
+                }else {//wrong pass
+                    completionHandler(.error(result.message))
+                }
+            }
+        }) { (error) in
+            print("error: \(error)")
+            completionHandler(.error(error))
+        }
+    }
+
+    static func registerUser(phone: String, pinCode: String, completionHandler: @escaping ((Result<Void>) -> Void)) {
+        let params = ["phone" : phone, "pincode": pinCode]
+        let url = APIService.getAPIURL(apiName: APIConstants.registerUser.rawValue)
+        _ = APIService.requestCheckErrorData(url: url, method: .post, parameters: params, completionHandler: { (message, data) in
+            let secretKey = SecretKey(data: data)
+            print(secretKey.secretKey)
+            AppConfiguration.shared.saveToken(phone: phone, token: secretKey.token)
+            completionHandler(.success(()))
+        }) { (error) in
+            print("error: \(error)")
+            completionHandler(.error(error))
+        }
     }
 
     // MARK: Merchant
-    static func searchMerchant(name: String, completionHandler: @escaping ((Results<Merchant>) -> Void)) {
+    static func searchMerchant(name: String, completionHandler: @escaping ((Results<Merchant>) -> Void))-> DataRequest? {
         print(name)
-        DispatchQueue.global().async {
-            Thread.sleep(forTimeInterval: 1)
-            DispatchQueue.main.async {
-                var merchants = SamepleData.merchantsList()
-                merchants.append(Merchant(name: name, logo: ""))
-                completionHandler(.success(merchants))
-            }
-        }
+        let url = APIService.getAPIURL(apiName: APIConstants.getMerchantsList.rawValue)
+        let params = ["searchKey" : name]
+        return APIService.authRequest(url: url, method: .post, parameters: params, completionHandler: { (data) in
+            let merchants = [Merchant](data: data)
+//            let string = String(data: data, encoding: String.Encoding.utf8)
+//            print(string)
+            completionHandler(.success(merchants))
+        }, errorHandler: { (error) in
+
+        })
+//        DispatchQueue.global().async {
+//            Thread.sleep(forTimeInterval: 1)
+//            DispatchQueue.main.async {
+//                var merchants = SamepleData.merchantsList()
+//                merchants.append(Merchant(name: name, logo: ""))
+//                completionHandler(.success(merchants))
+//            }
+//        }
 
     }
 

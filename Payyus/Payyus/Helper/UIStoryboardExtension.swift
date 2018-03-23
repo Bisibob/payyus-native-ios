@@ -37,7 +37,7 @@ extension UIStoryboard {
 
         private enum Identifier : String, StoryboardScene {
             static let storyboardName = "Main"
-            case mainVC = "SIMain"
+            case mainVC = "SIMerchant"
             case setupPasswordVC = "SISetupPassword"
             case setupMerchantVC = "SISetupMerchant"
             case bankConnectionVC = "SIBankConnection"

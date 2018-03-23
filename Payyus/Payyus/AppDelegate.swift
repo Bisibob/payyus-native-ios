@@ -22,6 +22,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared().isEnabled = true
         IQKeyboardManager.shared().isEnableAutoToolbar = false
         // Override point for customization after application launch.
+        if let account = AppConfiguration.shared.account {
+            if account.mainMerchantId.isEmpty {
+//                AppConfiguration.shared.account?.phone = "17433333364"
+                let setupMerchantVC = UIStoryboard.Main.setupMerchantViewController()
+                let navigation = UINavigationController(rootViewController: setupMerchantVC)
+                navigation.isNavigationBarHidden = true
+                self.window?.rootViewController = navigation
+            }else if account.isSetupBank {
+                let setupBankVC = UIStoryboard.Main.bankConnectionViewController()
+                let navigation = UINavigationController(rootViewController: setupBankVC)
+                navigation.isNavigationBarHidden = true
+                self.window?.rootViewController = navigation
+            }else {
+                let mainVC = UIStoryboard.Main.mainViewController()
+                let navigation = UINavigationController(rootViewController: mainVC)
+//                navigation.isNavigationBarHidden = true
+                self.window?.rootViewController = navigation
+            }
+        }
         return true
     }
 
@@ -33,6 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        AppConfiguration.shared.saveData()
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -45,6 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        AppConfiguration.shared.saveData()
     }
 
 

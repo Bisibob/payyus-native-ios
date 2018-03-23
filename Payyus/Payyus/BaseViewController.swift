@@ -62,6 +62,14 @@ class BaseViewController: UIViewController {
         }
     }
 
+    func showAlert(title: String, message: String, cancelTitle: String, cancelHandler: ((UIAlertAction) -> Void)? = nil, doneTitle: String? = nil, doneHandler: ((UIAlertAction) -> Void)? = nil) {
+        let alert = UIAlertController(title: NSLocalizedString(title, comment: ""), message: NSLocalizedString(message, comment: ""), preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString(cancelTitle, comment: ""), style: .cancel, handler: cancelHandler))
+        if let doneTitle = doneTitle {
+            alert.addAction(UIAlertAction(title: NSLocalizedString(doneTitle, comment: ""), style: .cancel, handler: doneHandler))
+        }
+        self.present(alert, animated: true, completion: nil)
+    }
 
     
     func hiddenLoading() {

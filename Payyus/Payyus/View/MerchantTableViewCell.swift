@@ -24,8 +24,10 @@ class MerchantTableViewCell: UITableViewCell {
     }
 
     func showData(_ merchant: Merchant) {
-        ivLogo.image = UIImage(named: merchant.logo)
-        lbName.text = merchant.name
+//        ivLogo.image = UIImage(named: merchant.logo)
+
+        ivLogo.image = UIImage(base64String: merchant.image)
+        lbName.text = merchant.merchant
     }
 
 }
