@@ -1409,47 +1409,77 @@ Cg
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tNy-Y4-KMA">
                                 <rect key="frame" x="0.0" y="320" width="320" height="80"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="The Burger Bar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nCK-nc-SZR">
-                                        <rect key="frame" x="81" y="0.0" width="148" height="41"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Burger Bar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nCK-nc-SZR">
+                                        <rect key="frame" x="84" y="0.0" width="150" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="Iaj-hi-sIK"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="Oswald-Regular" family="Oswald Regular" pointSize="24"/>
                                         <color key="textColor" red="0.99989169836044312" green="1" blue="0.99988096952438354" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="$5.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bOm-xM-xDf">
-                                        <rect key="frame" x="237" y="0.0" width="79" height="41"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$5.00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bOm-xM-xDf">
+                                        <rect key="frame" x="238" y="0.0" width="80" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="80" id="5hJ-1i-eBY"/>
+                                            <constraint firstAttribute="height" constant="40" id="ZDC-Md-GBJ"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="Oswald-Regular" family="Oswald Regular" pointSize="24"/>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mlb-e4-MD9">
-                                        <rect key="frame" x="275" y="43" width="30" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mlb-e4-MD9">
+                                        <rect key="frame" x="274" y="43" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="fqf-vb-6n0"/>
+                                            <constraint firstAttribute="width" constant="30" id="y0G-OX-c0V"/>
+                                        </constraints>
                                         <state key="normal" image="Reload Icon">
                                             <color key="titleColor" white="0.43683690200617287" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cxW-hZ-3gr">
-                                        <rect key="frame" x="237" y="43" width="30" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cxW-hZ-3gr">
+                                        <rect key="frame" x="236" y="43" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="P3d-cV-E2B"/>
+                                            <constraint firstAttribute="height" constant="30" id="jkg-0u-mqg"/>
+                                        </constraints>
                                         <state key="normal" image="dollar-symbol"/>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hr9-Se-KgM">
-                                        <rect key="frame" x="199" y="43" width="30" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hr9-Se-KgM">
+                                        <rect key="frame" x="198" y="43" width="30" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="30" id="wue-zU-sue"/>
+                                            <constraint firstAttribute="height" constant="30" id="yZ0-Xm-5kT"/>
+                                        </constraints>
                                         <state key="normal" title="Button" image="Order">
                                             <color key="titleColor" red="0.50588235294117645" green="0.50588235294117645" blue="0.50588235294117645" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                     </button>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="dish3" translatesAutoresizingMaskIntoConstraints="NO" id="MEs-0R-ZIV">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dish3" translatesAutoresizingMaskIntoConstraints="NO" id="MEs-0R-ZIV">
                                         <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="MEs-0R-ZIV" secondAttribute="height" multiplier="1:1" id="Mcr-Ax-c0z"/>
+                                        </constraints>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.052469335496425629" green="0.01138639822602272" blue="0.29607924818992615" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstItem="cxW-hZ-3gr" firstAttribute="bottom" secondItem="mlb-e4-MD9" secondAttribute="bottom" id="2KK-Ek-vyb"/>
                                     <constraint firstAttribute="height" constant="80" id="3cB-fs-cfL"/>
+                                    <constraint firstAttribute="trailing" secondItem="bOm-xM-xDf" secondAttribute="trailing" constant="2" id="9bV-6p-vxG"/>
+                                    <constraint firstItem="bOm-xM-xDf" firstAttribute="top" secondItem="tNy-Y4-KMA" secondAttribute="top" id="DML-Qz-iB0"/>
+                                    <constraint firstItem="nCK-nc-SZR" firstAttribute="leading" secondItem="MEs-0R-ZIV" secondAttribute="trailing" constant="4" id="Dkn-2f-DAY"/>
+                                    <constraint firstItem="mlb-e4-MD9" firstAttribute="leading" secondItem="cxW-hZ-3gr" secondAttribute="trailing" constant="8" id="XPU-vV-64c"/>
+                                    <constraint firstItem="bOm-xM-xDf" firstAttribute="leading" secondItem="nCK-nc-SZR" secondAttribute="trailing" constant="4" id="bvZ-Bf-MM3"/>
+                                    <constraint firstAttribute="bottom" secondItem="mlb-e4-MD9" secondAttribute="bottom" constant="7" id="d4R-kc-o6m"/>
+                                    <constraint firstItem="hr9-Se-KgM" firstAttribute="bottom" secondItem="mlb-e4-MD9" secondAttribute="bottom" id="dpa-g3-LRU"/>
+                                    <constraint firstItem="MEs-0R-ZIV" firstAttribute="leading" secondItem="tNy-Y4-KMA" secondAttribute="leading" id="eht-2t-Pfu"/>
+                                    <constraint firstItem="MEs-0R-ZIV" firstAttribute="top" secondItem="tNy-Y4-KMA" secondAttribute="top" id="gEW-3a-f4W"/>
+                                    <constraint firstItem="cxW-hZ-3gr" firstAttribute="leading" secondItem="hr9-Se-KgM" secondAttribute="trailing" constant="8" id="h6D-O3-nwI"/>
+                                    <constraint firstAttribute="trailing" secondItem="mlb-e4-MD9" secondAttribute="trailing" constant="16" id="sbi-sn-EDS"/>
+                                    <constraint firstItem="nCK-nc-SZR" firstAttribute="top" secondItem="tNy-Y4-KMA" secondAttribute="top" id="t6l-Zt-5Jv"/>
+                                    <constraint firstAttribute="bottom" secondItem="MEs-0R-ZIV" secondAttribute="bottom" id="uDp-df-J3W"/>
                                 </constraints>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dish1" translatesAutoresizingMaskIntoConstraints="NO" id="olr-Sz-j9U">

@@ -549,7 +549,6 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Payyus/Pods-Payyus-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/EVReflection/EVReflection.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManager/IQKeyboardManager.framework",
 				"${BUILT_PRODUCTS_DIR}/LGSideMenuController/LGSideMenuController.framework",
@@ -560,7 +559,6 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EVReflection.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManager.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LGSideMenuController.framework",

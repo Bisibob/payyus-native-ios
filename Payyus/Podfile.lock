@@ -2,7 +2,6 @@ PODS:
   - Alamofire (4.7.0)
   - Crashlytics (3.9.3):
     - Fabric (~> 1.7.2)
-  - CryptoSwift (0.8.3)
   - EVReflection (5.5.5):
     - EVReflection/Core (= 5.5.5)
   - EVReflection/Core (5.5.5)
@@ -16,7 +15,6 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - Crashlytics
-  - CryptoSwift
   - EVReflection (~> 5.5.1)
   - Fabric
   - IQKeyboardManager
@@ -28,7 +26,6 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   Alamofire: 907e0a98eb68cdb7f9d1f541a563d6ac5dc77b25
   Crashlytics: dbb07d01876c171c5ccbdf7826410380189e452c
-  CryptoSwift: 033efc3523865d19cc6ab6612fa17a62613b5dfa
   EVReflection: f5acec65ca5591bcb654743156172e3f2cbf2257
   Fabric: 9cd6a848efcf1b8b07497e0b6a2e7d336353ba15
   IQKeyboardManager: 0bfa4607d39924116b5c0c8b55b5d789288b5cba
@@ -37,6 +34,6 @@ SPEC CHECKSUMS:
   RNCryptor: 59b9f92e9fa8a1af74c32dc6b1af5e30ff5e1b64
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: 7659c8be732ce6ad124902adee960368de056a1b
+PODFILE CHECKSUM: 5e7a80121f3000054254bdce301f01b4be23f628
 
 COCOAPODS: 1.4.0
