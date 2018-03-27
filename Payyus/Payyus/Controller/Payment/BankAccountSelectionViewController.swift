@@ -15,11 +15,11 @@ class BankAccountSelectionViewController: BaseViewController {
     var publicToken: String?
 
     private var bankAccounts: [PlaidBankAccount] = []
-    private var selectedAccount: PlaidBankAccount?
-    
+    private var selectedAccount: BankAccount?
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        UIApplication.shared.statusBarStyle = .lightContent
         // Do any additional setup after loading the view.
 //        publicToken = "public-sandbox-d5bb4087-f690-4120-84ae-bf34eb4ba014"
         setupView()
@@ -29,16 +29,17 @@ class BankAccountSelectionViewController: BaseViewController {
     func setupView(){
         btnDone.addCorner()
         btnDone.isEnabled = false
+        btnDone.isHidden = true
         tbvBankAccount.rowHeight = 103
         tbvBankAccount.delegate = self
         tbvBankAccount.dataSource = self
     }
 
-    @IBAction func onDone(_ sender: Any) {
-//        saveBankAccount(selectedAccount!)
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.moveToMainViewController()
-    }
+//    @IBAction func onDone(_ sender: Any) {
+////        saveBankAccount(selectedAccount!)
+//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//        appDelegate.moveToMainViewController()
+//    }
 
 
     private func loadBankAccount() {
@@ -63,6 +64,7 @@ class BankAccountSelectionViewController: BaseViewController {
     }
 
     private func saveBankAccount(_ account: PlaidBankAccount) {
+        selectedAccount = BankAccount(plaidAccount: account)
         guard let info = account.info else {
             AppConfiguration.shared.bankData = account
             //move to setup bank billing
@@ -74,7 +76,8 @@ class BankAccountSelectionViewController: BaseViewController {
             moveToSetupBankBilling(info: info)
             return
         }
-       saveSelectedBankAccount()
+
+//       saveSelectedBankAccount(account: <#T##BankAccount#>)
     }
 
     private func moveToSetupBankBilling(info: BankAccountInfo?) {
@@ -84,20 +87,34 @@ class BankAccountSelectionViewController: BaseViewController {
             viewController.navigationController?.popViewController(animated: true)
         }
         setupBankBillingVC.doneHandler = {[unowned self] (viewController, bankInfo) in
-            self.selectedAccount?.info = bankInfo
-            self.saveSelectedBankAccount()
+            self.selectedAccount?.updateInfo(info: bankInfo)
+            self.selectedAccount?.yourPhoneNumber = (AppConfiguration.shared.account?.phone)!
+            self.saveSelectedBankAccount(account: self.selectedAccount!)
             viewController.navigationController?.popViewController(animated: true)
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            appDelegate.moveToMainViewController()
+
         }
         navigationController?.pushViewController(setupBankBillingVC, animated: true)
     }
 
     
 
-    private func saveSelectedBankAccount() {
-        if let loginAccount = AppConfiguration.shared.account {
-//            AppAPIService.
+    private func saveSelectedBankAccount(account: BankAccount) {
+//        AppConfiguration.shared.account?.isSetupBank = true
+//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//        appDelegate.moveToMainViewController()
+        AppAPIService.saveSelectedBankAccount(account: account) {[weak self] (result) in
+            guard let strongSelf = self else {
+                return
+            }
+            switch result {
+            case .success(_):
+                AppConfiguration.shared.account?.isSetupBank = true
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                appDelegate.moveToMainViewController()
+
+            case .error(let error):
+                strongSelf.showError(error)
+            }
         }
     }
     /*
@@ -125,8 +142,9 @@ extension BankAccountSelectionViewController : UITableViewDelegate, UITableViewD
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedAccount = bankAccounts[indexPath.row]
-        btnDone.isEnabled = true
+//        selectedAccount = bankAccounts[indexPath.row]
+//        btnDone.isEnabled = true
+        saveBankAccount(bankAccounts[indexPath.row])
     }
 
 }

@@ -39,13 +39,13 @@ extension String {
     }
 
     func prefixAHalf() -> String {
-        let splitterLength = Int(ceil(Double(self.count)))
+        let splitterLength = Int(ceil(Double(self.count / 2)))
         return String(self.prefix(splitterLength))
     }
 
     func suffixAHalf() -> String {
-        let splitterLength = Int(ceil(Double(self.count)))
-        return String(self.suffix(splitterLength-1))
+        let splitterLength = Int(ceil(Double(self.count / 2)))
+        return String(self.suffix(from: Index.init(encodedOffset: splitterLength)))
     }
 
     func splitTwoPieces() -> (prefix: String, suffix: String) {

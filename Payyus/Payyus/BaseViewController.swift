@@ -18,6 +18,7 @@ class BaseViewController: UIViewController {
         indicator.center = v.center
         return v
     }()
+    lazy var menuVC = UIStoryboard.Main.menuViewController()
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -29,7 +30,17 @@ class BaseViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    func showMenu(sender: UIButton) {
+        if sender.isSelected {
+            menuVC.view.removeFromSuperview()
+        }else{
+            let buttonFrame = sender.frame
+            menuVC.view.frame = CGRect(x: buttonFrame.origin.x, y: buttonFrame.origin.y + 30, width: 180, height: 470)
+            menuVC.view.layoutIfNeeded()
+            sender.superview?.addSubview(menuVC.view)
+        }
+        sender.isSelected = !sender.isSelected
+    }
     /*
     // MARK: - Navigation
 

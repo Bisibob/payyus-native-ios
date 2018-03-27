@@ -11,8 +11,8 @@ class AppConfiguration: NSObject {
 
     static let shared = AppConfiguration()
     var bankData: PlaidBankAccount?
-    var phoneNumber: String?
-    var pincode: String?
+//    var phoneNumber: String?
+//    var pincode: String?
     var account: Account?
     var lastMerchant: Merchant?
     

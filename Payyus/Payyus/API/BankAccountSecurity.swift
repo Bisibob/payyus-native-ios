@@ -11,80 +11,62 @@ import RNCryptor
 
 class BankAccountSecurity {
     static let shared = BankAccountSecurity()
-    var cardList: [String:BankAccount]?
-    var chLocalEncryptedData: Data?
+//    var cardList: [String: AnyObject]?
+    var chLocalBankAccountData: Data?
+    var chLocalEncryptedDictionary: [String: Data]?
+    var currentBankAccount: BankAccount?
 
     private init(){
         if let fileURL = fileUrl() {
-            do {
-                chLocalEncryptedData = try Data(contentsOf: fileURL, options: .mappedRead)
-            }
-            catch {/* error handling here */}
+            chLocalEncryptedDictionary = NSDictionary(contentsOf: fileURL) as? [String: Data]
+
         }
     }
 
     func saveData() {
         if let fileURL = fileUrl() {
-            do {
-                try chLocalEncryptedData?.write(to: fileURL)
+            if let dic = chLocalEncryptedDictionary as NSDictionary?{
+                dic.write(to: fileURL, atomically: true)
             }
-            catch {/* error handling here */}
         }
     }
-
-    func saveNewBankAccount(_ bankAccount: BankAccount, secretKey: String, chData: Data?) {
-        // Decryption
-        do {
-            var localCardHalfList: [BankAccount] = []
-            if let chLocalEncryptedData = chLocalEncryptedData {
-                 let localPlainText = try RNCryptor.decrypt(data: chLocalEncryptedData, withPassword: secretKey)
-//                localCardHalfList = [BankAccount](json: localPlainText)
-
-            }
-
-//            let serverPlainText = try RNCryptor.decrypt(data: chData, withPassword: secretKey)
-//            cardList.removeValue(forKey: "bankAccount")
-
-            // ...
-        } catch {
-            print(error)
+    func saveBankAccount(_ bankAccount: BankAccount, secretKey: String, chData: String) -> NSDictionary {
+        let currentTime = Date().timeIntervalSince1970
+        if chLocalEncryptedDictionary == nil {
+            chLocalEncryptedDictionary = [String: Data]()
         }
-    }
-
-    func decryptData(secretKey: String, chData: String) {
-
-    }
-
-    func splitC(suffix: String, secretKey: String) {
-        let suffix = 0;
-        var tmp1 = Dictionary<String, Any>()
-        var tmp2 = Dictionary<String, Any>()
-        if LocalStorage.shared.aid == nil {
-            LocalStorage.shared.aid = Date().timeIntervalSince1970
-        }
-        var plainText: [String: HalfC] = Dictionary<String, HalfC>()
-        for key in plainText.keys {
-            if let tmp = plainText[key] {
-                var type = "card"
-                if let tmpType = tmp.type {
-                    type = tmpType
-                }
-
-                if tmp.key == nil {
-//                    do {
-//                        let encrypt = try AES(key: arc4random(), iv: secretKey).encrypt(<#T##bytes: ArraySlice<UInt8>##ArraySlice<UInt8>#>)
-//
-//                    }catch(){
-//
+        //save local part
+        let localHalf = bankAccount.localPart()
+        let data = localHalf.toJsonData()
+        let encryptedData = RNCryptor.encrypt(data: data, withPassword: secretKey)
+        chLocalEncryptedDictionary?["bankAccount"] = encryptedData
+        saveData()
+//        let serverHalf = NSDictionary()
+//        do {
+//            if !chData.isEmpty {
+//                if let data = Data(base64Encoded: chData){
+//                    let serverPlainText = try RNCryptor.decrypt(data: data, withPassword: secretKey)
+//                    if let dic = try JSONSerialization.jsonObject(with: serverPlainText, options: .mutableContainers) as? NSDictionary{
+//                        serverHalf = dic
 //                    }
-
-                }
-
-            }
-        }
+//                }
+//            }
+//        }catch {
+//
+//        }
+        let serverHalf = ["\(currentTime)" :["bankAccount": bankAccount.serverPart().toDictionary()]]
+        return serverHalf as NSDictionary
     }
+
+    func storeUserName() -> [String]{
+        guard let currentBankAccount = currentBankAccount else {
+            return []
+        }
+        return [currentBankAccount.bankAccountName]
+    }
+
     private func fileUrl() -> URL?{
-        let file = "payyus.txt"
+        let file = "payyus.plist"
         if let dir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
             let fileURL = dir.appendingPathComponent(file)
             return fileURL

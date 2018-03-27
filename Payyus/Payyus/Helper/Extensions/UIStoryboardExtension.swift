@@ -40,9 +40,11 @@ extension UIStoryboard {
             case mainVC = "SIMerchant"
             case setupPasswordVC = "SISetupPassword"
             case setupMerchantVC = "SISetupMerchant"
+            case lastStepVC = "SILastStep"
             case bankConnectionVC = "SIBankConnection"
             case bankAccountSelectionVC = "SIBankAccountSelection"
             case setupBankBillingVC = "SISetupBankBilling"
+            case menuVC = "SIMenu"
         }
 
         static func mainViewController() -> UIViewController {
@@ -57,6 +59,10 @@ extension UIStoryboard {
             return Identifier.setupMerchantVC.viewController()
         }
 
+        static func lastStepViewController() -> UIViewController {
+            return Identifier.lastStepVC.viewController()
+        }
+
         static func bankConnectionViewController() -> UIViewController {
             return Identifier.bankConnectionVC.viewController()
         }
@@ -67,6 +73,10 @@ extension UIStoryboard {
 
         static func setupBankBillingViewController() -> UIViewController {
             return Identifier.setupBankBillingVC.viewController()
+        }
+
+        static func menuViewController() -> UIViewController {
+            return Identifier.menuVC.viewController()
         }
     }
 

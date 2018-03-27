@@ -18,13 +18,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        UIApplication.shared.statusBarStyle = .lightContent
         Fabric.with([Crashlytics.self])
         IQKeyboardManager.shared().isEnabled = true
         IQKeyboardManager.shared().isEnableAutoToolbar = false
         // Override point for customization after application launch.
         if let account = AppConfiguration.shared.account {
-            if AppConfiguration.shared.lastMerchant == nil {
-                let setupMerchantVC = UIStoryboard.Main.setupMerchantViewController()
+//            if AppConfiguration.shared.lastMerchant != nil {
+            if account.mainMerchantId.isEmpty {
+                let setupMerchantVC = UIStoryboard.Main.setupMerchantViewController() as! SetupMerchantViewController
+                setupMerchantVC.canCancel = false
                 let navigation = UINavigationController(rootViewController: setupMerchantVC)
                 navigation.isNavigationBarHidden = true
                 self.window?.rootViewController = navigation
@@ -34,10 +37,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 navigation.isNavigationBarHidden = true
                 self.window?.rootViewController = navigation
             }else {
-//                let mainVC = UIStoryboard.Main.mainViewController()
-//                let navigation = UINavigationController(rootViewController: mainVC)
-////                navigation.isNavigationBarHidden = true
-//                self.window?.rootViewController = navigation
+                let mainVC = UIStoryboard.Main.mainViewController()
+                let navigation = UINavigationController(rootViewController: mainVC)
+                navigation.isNavigationBarHidden = true
+                self.window?.rootViewController = navigation
             }
         }
         return true

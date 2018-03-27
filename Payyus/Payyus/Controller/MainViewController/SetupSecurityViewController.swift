@@ -12,6 +12,8 @@ class SetupSecurityViewController: BaseViewController {
 
     @IBOutlet weak var btnNext: UIButton!
     @IBOutlet weak var tfPassword: UITextField!
+
+    @IBOutlet weak var btnVisiblePassword: UIButton!
     var phoneNumber: String?
     
     override func viewDidLoad() {
@@ -74,6 +76,11 @@ class SetupSecurityViewController: BaseViewController {
 //        }
     }
 
+    @IBAction func onVisiblePassword(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        tfPassword.isSecureTextEntry = !tfPassword.isSecureTextEntry
+        tfPassword.becomeFirstResponder()
+    }
     func showAlertToRegisterPhone() {
         showAlert(title: "Warning", message: "", cancelTitle: "Cancel", doneTitle: "Confirm") {[unowned self] (_) in
             self.showLoading()

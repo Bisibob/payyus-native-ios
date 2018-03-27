@@ -10,13 +10,18 @@ import UIKit
 //import Alamofire
 class SetupMerchantViewController: BaseViewController {
     @IBOutlet weak var tfMerchantName: UITextField!
-    
     @IBOutlet weak var tbvMerchants: UITableView!
     @IBOutlet weak var btnNext: UIButton!
+    @IBOutlet weak var btnCancel: UIButton!
+
+
     @IBOutlet weak var vTableLoading: UIView!
     private var selectedMerchant: Merchant?
     private var merchantsList: [Merchant] = []
     private var delayTypingTimer: Timer?
+    private let rowHeight: CGFloat = 84
+
+    var canCancel: Bool = true
 //    private var requestDa
 
     override func viewDidLoad() {
@@ -28,11 +33,14 @@ class SetupMerchantViewController: BaseViewController {
     func setupView(){
         btnNext.addCorner()
         btnNext.isEnabled = false
+        btnCancel.addCorner()
+        btnCancel.isHidden = !canCancel
+        vTableLoading.isHidden = true
         showTableView(false)
         let tfMerchantNamePlaceholder: String = "Merchant Name"
         tfMerchantName.attributedPlaceholder = NSAttributedString(string: tfMerchantNamePlaceholder, attributes: [NSAttributedStringKey.foregroundColor: UIColor.init(red: 112/255, green: 112/255, blue: 112/255, alpha: 1.0)])
         tfMerchantName.delegate = self
-        tbvMerchants.rowHeight = 84
+        tbvMerchants.rowHeight = rowHeight
         tbvMerchants.delegate = self
         tbvMerchants.dataSource = self
 
@@ -44,6 +52,11 @@ class SetupMerchantViewController: BaseViewController {
         }
 
     }
+
+    @IBAction func onCancel(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
+    }
+
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
@@ -51,7 +64,7 @@ class SetupMerchantViewController: BaseViewController {
 
     private func showTableView(_ value: Bool){
         tbvMerchants.isHidden = !value
-        vTableLoading.isHidden = !value
+//        vTableLoading.isHidden = !value
     }
     func scheduleSearchMerchant(timeInterval: TimeInterval) {
         if delayTypingTimer == nil {
@@ -70,6 +83,7 @@ class SetupMerchantViewController: BaseViewController {
     func searchMerchant(keyword: String){
         selectedMerchant = nil
         btnNext.isEnabled = false
+        vTableLoading.isHidden = false
         _ = AppAPIService.searchMerchant(name: keyword) {[weak self] (result) in
             guard let strongSelf = self else {
                 return
@@ -78,11 +92,17 @@ class SetupMerchantViewController: BaseViewController {
             case .success(let merchants):
                 strongSelf.merchantsList = merchants
                 strongSelf.vTableLoading.isHidden = true
+                strongSelf.showTableView(true)
                 strongSelf.tbvMerchants.reloadData()
             case .error(let error):
                 strongSelf.showError(error)
             }
         }
+    }
+
+    func moveToLastStepSetupViewController(){
+        let lastStepVC = UIStoryboard.Main.lastStepViewController()
+        navigationController?.pushViewController(lastStepVC, animated: true)
     }
 }
 
@@ -92,7 +112,7 @@ extension SetupMerchantViewController:UITextFieldDelegate{
         let updatedText = textField.textShouldChangeCharactersIn(range, replacementString: string)
         if updatedText.count >= 4 {
             scheduleSearchMerchant(timeInterval: 0.5)
-            showTableView(true)
+
         }else if updatedText.count == 0{
             showTableView(false)
         }
@@ -108,6 +128,16 @@ extension SetupMerchantViewController:UITextFieldDelegate{
 extension SetupMerchantViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if merchantsList.count == 0 {
+            let v = UIView(frame: tableView.bounds)
+            let frame = CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: rowHeight)
+            let noResultLabel = UILabel(centerLabelWithFrame: frame, text: "No result!", color: UIColor(hex: "B3B4B4"))
+            v.addSubview(noResultLabel)
+            v.backgroundColor = UIColor.clear
+            tableView.backgroundView = v
+        }else{
+            tableView.backgroundView = nil
+        }
         return merchantsList.count
     }
 
@@ -122,7 +152,10 @@ extension SetupMerchantViewController: UITableViewDelegate, UITableViewDataSourc
         selectedMerchant = merchantsList[indexPath.row]
         tfMerchantName.text = selectedMerchant?.merchant
         showTableView(false)
-        btnNext.isEnabled = true
+//        btnNext.isEnabled = true
+//        AppConfiguration.shared.lastMerchant = selectedMerchant
+        AppConfiguration.shared.account?.mainMerchantId = selectedMerchant!.id
+        moveToLastStepSetupViewController()
 
     }
 

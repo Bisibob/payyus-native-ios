@@ -10,7 +10,7 @@ import Foundation
 
 class Account: ModelType {
     var phone: String = ""
-//    var pinCode: String = ""
+    var pinCode: String = ""
     var token: String = ""
     var secretKey: String = ""
     var mainMerchantId: String = ""

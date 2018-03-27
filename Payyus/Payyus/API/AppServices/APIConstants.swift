@@ -16,5 +16,8 @@ enum APIConstants : String{
     case getMerchantsList = "v3/getMerchantsList"
     case plaidAccounts = "plaidAccounts"
     case getZipCodes = "getZipCodes"
+    case storeUserNames = "v3/storeUserNames"
+    case setHalfC = "v3/setHalfC"
+    
 
 }

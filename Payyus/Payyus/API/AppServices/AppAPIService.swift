@@ -75,6 +75,7 @@ class AppAPIService {
             if !secretKey.secretKey.isEmpty {//phone and pincode valid
 //                hasSecretKey = true
                 AppConfiguration.shared.saveToken(phone: phone, token: secretKey.token)
+                AppConfiguration.shared.account?.pinCode = pinCode
                 completionHandler(.success(true))
                 return
             }else {//new phone or wrong pass
@@ -83,6 +84,7 @@ class AppAPIService {
                     self.registerUser(phone: phone, pinCode: pinCode, completionHandler: { (result) in
                         switch result {
                         case .success(_):
+                            AppConfiguration.shared.account?.pinCode = pinCode
                             completionHandler(.success(true))
                         case .error(let error):
                             completionHandler(.error(error))
@@ -167,16 +169,59 @@ class AppAPIService {
         }
     }
 
-    static func saveSelectedBankAccount(account: PlaidBankAccount, completionHandler: @escaping ((Result<Bool>) -> Void)) {
-        let params = ["ch" : "1"]
+    static func saveSelectedBankAccount(account: BankAccount, completionHandler: @escaping ((Result<Void>) -> Void)) {
+        guard let phoneAccount = AppConfiguration.shared.account else {
+            completionHandler(.error(""))
+            return
+        }
+        let params = ["phone": phoneAccount.phone, "pincode": phoneAccount.pinCode, "ch" : "1"]
         let url = APIService.getAPIURL(apiName: APIConstants.secretKey.rawValue)
         _ = APIService.requestCheckErrorData(url: url, method: .post, parameters: params, completionHandler: { (message, data) in
             let secretKey = SecretKey(data: data)
-//            print(secretKey.secretKey)
-
+//            BankAccountSecurity.shared.saveNewBankAccount(account, secretKey: secretKey.secretKey)
+//
+//            let serverEncryptedData = BankAccountSecurity.shared.newBankAccountForServerHalf(account, secretKey: secretKey.secretKey, chData: secretKey.ch)
+            let serverHalf = BankAccountSecurity.shared.saveBankAccount(account, secretKey: secretKey.secretKey, chData: secretKey.ch)
+            let userNames = BankAccountSecurity.shared.storeUserName()
+            storeUserNames(names: userNames, completionHandler: nil)
+            setHalfC(serverHalf: serverHalf, secretKey: secretKey.secretKey, completionHandler: nil)
+            
+            completionHandler(.success(()))
         }) { (error) in
             print("error: \(error)")
             completionHandler(.error(error))
         }
+    }
+
+    static func storeUserNames(names:[String], completionHandler: ((Result<Void>) -> Void)?){
+        do {
+            let data = try JSONSerialization.data(withJSONObject: names, options: .prettyPrinted)
+            let params = ["data" : data]
+            let url = APIService.getAPIURL(apiName: APIConstants.storeUserNames.rawValue)
+            _ = APIService.authRequest(url: url, method: .post, parameters: params, completionHandler: { (_) in
+                completionHandler?(.success(()))
+            }, errorHandler: { (error) in
+                completionHandler?(.error(error))
+            })
+        }catch{
+            completionHandler?(.error(error.localizedDescription))
+        }
+    }
+
+    static func setHalfC(serverHalf: NSDictionary, secretKey: String, completionHandler: ((Result<Void>) -> Void)?){
+        var data = ""
+        do{
+            let json = try JSONSerialization.data(withJSONObject: serverHalf, options: .prettyPrinted)
+            data = String(data: json, encoding: .utf8) ?? ""
+        }catch{}
+
+        let params: [String : Any] = ["data" : data, "secret-key" : secretKey]
+        let url = APIService.getAPIURL(apiName: APIConstants.setHalfC.rawValue)
+        _ = APIService.authRequest(url: url, method: .post, parameters: params, completionHandler: { (_) in
+            completionHandler?(.success(()))
+        }, errorHandler: { (error) in
+            completionHandler?(.error(error))
+        })
+
     }
 }

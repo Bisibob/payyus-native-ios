@@ -31,23 +31,5 @@ class HalfCBankAccount: ModelType, HalfC {
     required init() {
     }
 
-    func localPart() -> HalfCBankAccount {
-        let account = HalfCBankAccount()
-        account.bankAccountNumber = bankAccountNumber.prefixAHalf()
-        account.bankName = bankName.prefixAHalf()
-        account.bankRoutingNumber = bankRoutingNumber.prefixAHalf()
-        account.yourPhoneNumber = yourPhoneNumber.prefixAHalf()
-        account.zipcode = zipcode.prefixAHalf()
-        return account
-    }
-
-    func serverPart() -> HalfCBankAccount {
-        let account = HalfCBankAccount()
-        account.bankAccountNumber = bankAccountNumber.suffixAHalf()
-        account.bankName = bankName.suffixAHalf()
-        account.bankRoutingNumber = bankRoutingNumber.suffixAHalf()
-        account.yourPhoneNumber = yourPhoneNumber.suffixAHalf()
-        account.zipcode = zipcode.suffixAHalf()
-        return account
-    }
+    
 }

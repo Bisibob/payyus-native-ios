@@ -47,13 +47,13 @@ class APIService {
             errorHandler(error)
         }
     }
-    static func authRequest(url: String, method: HTTPMethod, parameters: [String : String]?, completionHandler:@escaping ((Data) -> Void), errorHandler: @escaping((String) -> Void )) -> DataRequest?  {
+    static func authRequest(url: String, method: HTTPMethod, parameters: [String : Any]?, completionHandler:@escaping ((Data) -> Void), errorHandler: @escaping((String) -> Void )) -> DataRequest?  {
         guard let account = AppConfiguration.shared.account else {
             return nil
         }
-        var params = ["phone": account.phone, "token": account.token]
+        var params: [String: Any] = ["phone": account.phone, "token": account.token]
         if let parameters = parameters {
-            params = params.merging(parameters, uniquingKeysWith: { (current, _) -> String in
+            params = params.merging(parameters, uniquingKeysWith: { (current, _) -> Any in
                 current
             })
         }
