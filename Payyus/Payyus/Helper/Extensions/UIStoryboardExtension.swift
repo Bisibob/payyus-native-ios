@@ -45,6 +45,8 @@ extension UIStoryboard {
             case bankAccountSelectionVC = "SIBankAccountSelection"
             case setupBankBillingVC = "SISetupBankBilling"
             case menuVC = "SIMenu"
+            case fundAccount = "SIFundAccount"
+            case confirmFunding = "SIConfirmFunding"
         }
 
         static func mainViewController() -> UIViewController {
@@ -77,6 +79,14 @@ extension UIStoryboard {
 
         static func menuViewController() -> UIViewController {
             return Identifier.menuVC.viewController()
+        }
+
+        static func fundAccountViewController() -> UIViewController {
+            return Identifier.fundAccount.viewController()
+        }
+
+        static func confirmFundingViewController() -> UIViewController {
+            return Identifier.confirmFunding.viewController()
         }
     }
 

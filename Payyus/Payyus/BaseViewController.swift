@@ -12,6 +12,7 @@ class BaseViewController: UIViewController {
     lazy var loadingView: UIView = {
         let v = UIView(frame: UIScreen.main.bounds)
         let indicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
+        indicator.color = UIColor.black
         indicator.startAnimating()
         v.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
         v.addSubview(indicator)
@@ -35,7 +36,7 @@ class BaseViewController: UIViewController {
             menuVC.view.removeFromSuperview()
         }else{
             let buttonFrame = sender.frame
-            menuVC.view.frame = CGRect(x: buttonFrame.origin.x, y: buttonFrame.origin.y + 30, width: 180, height: 470)
+            menuVC.view.frame = CGRect(x: buttonFrame.origin.x, y: buttonFrame.origin.y + 30, width: 180, height: 380)
             menuVC.view.layoutIfNeeded()
             sender.superview?.addSubview(menuVC.view)
         }
@@ -67,7 +68,8 @@ class BaseViewController: UIViewController {
 
 
 
-    func showLoading() {
+    func showLoading(alpha: CGFloat = 0.5) {
+        loadingView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: alpha)
         if !view.subviews.contains(loadingView){
             view.addSubview(loadingView)
         }

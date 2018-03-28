@@ -25,10 +25,9 @@ class SamepleData {
     }
     static func advertsList() -> [Advert] {
         return [
-            Advert(image: "dish3", title: "Join Sammy’s\n Get $5 FREE to Start!"),
-            Advert(image: "dish1", title: "Join The Hake\n Get $5 FREE to Start!"),
-            Advert(image: "dish2", title: "Join The Beer\n Get $10 FREE to Start!"),
-
+//            Advert(image: "dish3", title: "Join Sammy’s\n Get $5 FREE to Start!"),
+//            Advert(image: "dish1", title: "Join The Hake\n Get $5 FREE to Start!"),
+//            Advert(image: "dish2", title: "Join The Beer\n Get $10 FREE to Start!"),
 
         ]
     }

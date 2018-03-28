@@ -24,6 +24,9 @@
 		13622B172063B50900ED0E38 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13622B162063B50900ED0E38 /* UIImage+Extension.swift */; };
 		1371A3B02068920C0077E9BD /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1371A3AF2068920C0077E9BD /* UIColor+Extension.swift */; };
 		1371A3B2206899B50077E9BD /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1371A3B1206899B50077E9BD /* UILabel+Extension.swift */; };
+		137E8999206B2C86003A804E /* FundAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137E8998206B2C86003A804E /* FundAccountViewController.swift */; };
+		137E899B206B4187003A804E /* ConfirmFundingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137E899A206B4187003A804E /* ConfirmFundingViewController.swift */; };
+		137E899F206B50C7003A804E /* MerchantMoreInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 137E899E206B50C7003A804E /* MerchantMoreInfo.swift */; };
 		138625F4205F50EF002866AB /* BankAccountSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138625F3205F50EF002866AB /* BankAccountSelectionViewController.swift */; };
 		138625F6205F51EC002866AB /* BankAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138625F5205F51EC002866AB /* BankAccountTableViewCell.swift */; };
 		138625F8205F67DC002866AB /* BankAccountInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138625F7205F67DC002866AB /* BankAccountInfo.swift */; };
@@ -45,6 +48,7 @@
 		139A47F8205BAAF400C831C7 /* BankConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139A47F7205BAAF400C831C7 /* BankConnectionViewController.swift */; };
 		139A47FA205BCA0C00C831C7 /* PlaidBankAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 139A47F9205BCA0C00C831C7 /* PlaidBankAccount.swift */; };
 		13AA1341206A28A200E3A123 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AA1340206A28A200E3A123 /* MenuViewController.swift */; };
+		13AA1343206A3DF100E3A123 /* ShopperBankInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AA1342206A3DF100E3A123 /* ShopperBankInfo.swift */; };
 		84282D632059229600F7F806 /* SetupPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84282D622059229600F7F806 /* SetupPhoneViewController.swift */; };
 		84282D652059248600F7F806 /* SetupSecurityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84282D642059248600F7F806 /* SetupSecurityViewController.swift */; };
 		84282D672059254B00F7F806 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84282D662059254B00F7F806 /* UIView+Extension.swift */; };
@@ -108,6 +112,9 @@
 		13622B162063B50900ED0E38 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 		1371A3AF2068920C0077E9BD /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		1371A3B1206899B50077E9BD /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
+		137E8998206B2C86003A804E /* FundAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FundAccountViewController.swift; sourceTree = "<group>"; };
+		137E899A206B4187003A804E /* ConfirmFundingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmFundingViewController.swift; sourceTree = "<group>"; };
+		137E899E206B50C7003A804E /* MerchantMoreInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MerchantMoreInfo.swift; sourceTree = "<group>"; };
 		138625F3205F50EF002866AB /* BankAccountSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankAccountSelectionViewController.swift; sourceTree = "<group>"; };
 		138625F5205F51EC002866AB /* BankAccountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankAccountTableViewCell.swift; sourceTree = "<group>"; };
 		138625F7205F67DC002866AB /* BankAccountInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankAccountInfo.swift; sourceTree = "<group>"; };
@@ -131,6 +138,7 @@
 		139A47F7205BAAF400C831C7 /* BankConnectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankConnectionViewController.swift; sourceTree = "<group>"; };
 		139A47F9205BCA0C00C831C7 /* PlaidBankAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaidBankAccount.swift; sourceTree = "<group>"; };
 		13AA1340206A28A200E3A123 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		13AA1342206A3DF100E3A123 /* ShopperBankInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopperBankInfo.swift; sourceTree = "<group>"; };
 		326A62FBEB8AED19A4AB10DA /* Pods-Payyus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Payyus.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Payyus/Pods-Payyus.debug.xcconfig"; sourceTree = "<group>"; };
 		84282D622059229600F7F806 /* SetupPhoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupPhoneViewController.swift; sourceTree = "<group>"; };
 		84282D642059248600F7F806 /* SetupSecurityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupSecurityViewController.swift; sourceTree = "<group>"; };
@@ -213,6 +221,8 @@
 				130F575D2062724E00DCC836 /* SecretKey.swift */,
 				138CF4F8206498350086D2BF /* Advert.swift */,
 				138CF514206501060086D2BF /* BankAccount.swift */,
+				13AA1342206A3DF100E3A123 /* ShopperBankInfo.swift */,
+				137E899E206B50C7003A804E /* MerchantMoreInfo.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -267,6 +277,8 @@
 				139A47F7205BAAF400C831C7 /* BankConnectionViewController.swift */,
 				138625F3205F50EF002866AB /* BankAccountSelectionViewController.swift */,
 				131D8A842060C107000B639D /* SetupBankBillingViewController.swift */,
+				137E8998206B2C86003A804E /* FundAccountViewController.swift */,
+				137E899A206B4187003A804E /* ConfirmFundingViewController.swift */,
 			);
 			path = Payment;
 			sourceTree = "<group>";
@@ -579,6 +591,8 @@
 				"${BUILT_PRODUCTS_DIR}/LGSideMenuController/LGSideMenuController.framework",
 				"${PODS_ROOT}/Plaid/ios/LinkKit.framework",
 				"${BUILT_PRODUCTS_DIR}/RNCryptor/RNCryptor.framework",
+				"${BUILT_PRODUCTS_DIR}/Socket.IO-Client-Swift/SocketIO.framework",
+				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -589,6 +603,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LGSideMenuController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LinkKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNCryptor.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SocketIO.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -614,15 +630,18 @@
 				138625FC205F956E002866AB /* LocalStorage.swift in Sources */,
 				138CF515206501060086D2BF /* BankAccount.swift in Sources */,
 				84C090B62058DF9A003D7FB1 /* LoginViewController.swift in Sources */,
+				137E8999206B2C86003A804E /* FundAccountViewController.swift in Sources */,
 				1371A3B2206899B50077E9BD /* UILabel+Extension.swift in Sources */,
 				84282D652059248600F7F806 /* SetupSecurityViewController.swift in Sources */,
 				84C090982058D29E003D7FB1 /* AppDelegate.swift in Sources */,
 				13514A93205A75CF00EE12FC /* Account.swift in Sources */,
 				13AA1341206A28A200E3A123 /* MenuViewController.swift in Sources */,
 				138625F6205F51EC002866AB /* BankAccountTableViewCell.swift in Sources */,
+				137E899F206B50C7003A804E /* MerchantMoreInfo.swift in Sources */,
 				130F575E2062724E00DCC836 /* SecretKey.swift in Sources */,
 				131D8A852060C107000B639D /* SetupBankBillingViewController.swift in Sources */,
 				84282D672059254B00F7F806 /* UIView+Extension.swift in Sources */,
+				137E899B206B4187003A804E /* ConfirmFundingViewController.swift in Sources */,
 				84282D6B20592C0800F7F806 /* SetupLastStepViewController.swift in Sources */,
 				138CF4F72064937F0086D2BF /* iCarousel.m in Sources */,
 				13514A86205A58BB00EE12FC /* AppResponeData.swift in Sources */,
@@ -633,6 +652,7 @@
 				13862600205FA54B002866AB /* BankAccountSecurity.swift in Sources */,
 				13862602205FB501002866AB /* HalfCBankAccount.swift in Sources */,
 				13514A8F205A5E0900EE12FC /* UIButtonExtension.swift in Sources */,
+				13AA1343206A3DF100E3A123 /* ShopperBankInfo.swift in Sources */,
 				13514A83205A58BB00EE12FC /* AppConfiguration.swift in Sources */,
 				84282D6920592A0D00F7F806 /* SetupMerchantViewController.swift in Sources */,
 				139A47F0205B664F00C831C7 /* MerchantTableViewCell.swift in Sources */,

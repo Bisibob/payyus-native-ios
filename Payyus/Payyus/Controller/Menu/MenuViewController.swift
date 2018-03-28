@@ -10,7 +10,7 @@ import UIKit
 
 class MenuViewController: BaseViewController {
     @IBOutlet weak var tbvMenu: UITableView!
-    var menuList: [String] = ["Merchants", "Bill Request", "Activity", "Rewards", "Gift Card", "Instant Funds", "Specials", "Feedback", "Settings"]
+    var menuList: [String] = ["Merchants", "Bill Request", "Activity", "Rewards", "Gift Card", "Feedback", "Settings"]
     override func viewDidLoad() {
         super.viewDidLoad()
 

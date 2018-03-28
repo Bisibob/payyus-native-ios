@@ -20,5 +20,23 @@ extension UITextField {
         }
         return text
     }
+
+    func addEyeButton() {
+        let buttonSize: CGFloat = 32
+        let button = UIButton(frame: CGRect(x: 0 , y: 0, width: buttonSize, height: buttonSize))
+        button.setImage(#imageLiteral(resourceName: "visible") , for: .normal)
+        button.setImage(#imageLiteral(resourceName: "invisible"), for: .selected)
+        button.addTarget(self, action: #selector(onShowPassword(_:)), for: UIControlEvents.touchUpInside)
+        rightView = button
+        rightViewMode = .always
+
+    }
+
+    @objc func onShowPassword(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        isSecureTextEntry = !isSecureTextEntry
+        resignFirstResponder()
+        becomeFirstResponder()
+    }
 }
 

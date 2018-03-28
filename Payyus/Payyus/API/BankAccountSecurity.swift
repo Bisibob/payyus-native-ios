@@ -13,8 +13,13 @@ class BankAccountSecurity {
     static let shared = BankAccountSecurity()
 //    var cardList: [String: AnyObject]?
     var chLocalBankAccountData: Data?
-    var chLocalEncryptedDictionary: [String: Data]?
+    var chLocalEncryptedDictionary: [String: Any]?
     var currentBankAccount: BankAccount?
+    var shopperBankInfo: ShopperBankInfo?{
+        didSet {
+            chLocalEncryptedDictionary?["shopperBankInfo"] = shopperBankInfo?.toDictionary()
+        }
+    }
 
     private init(){
         if let fileURL = fileUrl() {

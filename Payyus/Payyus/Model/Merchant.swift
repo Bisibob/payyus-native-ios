@@ -10,16 +10,12 @@ import Foundation
 import UIKit
 class Merchant: ModelType {
     var id: String = ""
+    var userName: String = ""
     var merchant: String = ""
     var image: String = ""
     var paymentType: String = ""
     var backgroundColor: String = ""
     var foreColor: String = ""
-
-    let logo: UIImage? = {
-//        let data = self.image.
-        return UIImage()
-    }()
     override func propertyMapping() -> [(keyInObject: String?, keyInResource: String?)] {
         return [(keyInObject: "paymentType", keyInResource: "payment_type"),
                 (keyInObject: "backgroundColor", keyInResource: "background_color"),

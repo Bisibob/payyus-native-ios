@@ -8,7 +8,6 @@
 
 import Foundation
 class BankAccount: ModelType {
-    var storedID: String = ""
     var type: String = ""
     var bankName: String = ""
     var bankRoutingNumber: String = ""
@@ -18,7 +17,6 @@ class BankAccount: ModelType {
     var yourAddress: String = ""
     var zipcode: String = ""
     var acctType: Int = 0
-    var splitted: Int = 0
 
     required init() {
 

@@ -29,6 +29,7 @@ class SetupBankBillingViewController: BaseViewController {
     var accountInfo: BankAccountInfo? = BankAccountInfo()
     var doneHandler: ((UIViewController, BankAccountInfo) -> ())?
     var cancelHandler: ((UIViewController) ->())?
+    var shopperBankInfo: ShopperBankInfo = ShopperBankInfo()
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -54,6 +55,22 @@ class SetupBankBillingViewController: BaseViewController {
         tfCity.delegate = self
         tfShopperLastName.delegate = self
         tfShopperFirstName.delegate = self
+        if let shopperBankInfo = BankAccountSecurity.shared.shopperBankInfo {
+            tfShopperFirstName.text = shopperBankInfo.shopperFirstName
+            tfShopperLastName.text = shopperBankInfo.shopperLastName
+            tfCity.text = shopperBankInfo.city
+            tfState.text = shopperBankInfo.state
+            tfZipCode.text = shopperBankInfo.zipcode
+            tfAddress1.text = shopperBankInfo.address1
+            tfAddress2.text = shopperBankInfo.address2
+        }
+        if let info = accountInfo {
+            tfShopperFirstName.text = info.holderName
+            tfZipCode.text = info.zipcode
+            tfAddress1.text = info.address
+        }
+
+
     }
 
 
@@ -140,6 +157,15 @@ class SetupBankBillingViewController: BaseViewController {
         accountInfo?.address = tfAddress1.text!
         accountInfo?.holderName = tfShopperFirstName.text! + " " + tfShopperLastName.text!
         accountInfo?.zipcode = tfZipCode.text!
+
+        shopperBankInfo.shopperFirstName = tfShopperFirstName.text
+        shopperBankInfo.shopperLastName = tfShopperLastName.text
+        shopperBankInfo.address1 = tfAddress1.text
+        shopperBankInfo.address2 = tfAddress2.text
+        shopperBankInfo.city = tfCity.text
+        shopperBankInfo.state = tfState.text
+        shopperBankInfo.zipcode = tfZipCode.text
+        BankAccountSecurity.shared.shopperBankInfo = shopperBankInfo
         doneHandler(self, accountInfo!)
     }
 

@@ -17,29 +17,16 @@ class MerchantViewController: BaseViewController {
     @IBOutlet weak var topViewConstraint: NSLayoutConstraint!
     var advImages: [Advert] = SamepleData.advertsList()
     var firstLoad: Bool = false
+    var currentMerchant: MerchantMoreInfo?
     override func viewDidLoad() {
         super.viewDidLoad()
-//        if let lastMerchant = AppConfiguration.shared.lastMerchant{
-//            ivLogo.image = UIImage(base64String: lastMerchant.image)
-//            lbMerchantName.text = lastMerchant.merchant
-//            lbBalance.text = "$0.00"
-//        }
         iCarouselAdvs.type = .rotary
         iCarouselAdvs.isVertical = true
         iCarouselAdvs.bounces = false
         iCarouselAdvs.scrollSpeed = 0.5
-//        iCarouselAdvs.offsetMultiplier = 2
-//        iCarouselAdvs.centerItemWhenSelected = false
-        // Do any additional setup after loading the view.
+        loadData()
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-//        print("\(UIScreen.main.bounds.width) ")
-//        iCarouselAdvs.perspective = -0.0005
-//        iCarouselAdvs.contentOffset = view.frame.size
-//        iCarouselAdvs.viewpointOffset = CGSize(width: 60, height: 60)
-    }
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         print("\(UIScreen.main.bounds.width) ")
@@ -50,17 +37,64 @@ class MerchantViewController: BaseViewController {
             topViewConstraint.constant =  -(screenSize.height - screenSize.width)
         }
     }
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-
-//
-    }
 
     
     @IBAction func onLogoTapped(_ sender: UIButton) {
        showMenu(sender: sender)
     }
+
+
+    @IBAction func onFundAccount(_ sender: Any) {
+        let fundAccountVC = UIStoryboard.Main.fundAccountViewController() as! FundAccountViewController
+        fundAccountVC.merchant = currentMerchant?.info
+        navigationController?.pushViewController(fundAccountVC, animated: true)
+    }
+
+    private func loadData() {
+        if let merchantId = AppConfiguration.shared.account?.mainMerchantId {
+            showLoading(alpha: 1)
+            AppAPIService.getMerchantInfo(merchantId: merchantId, completionHandler: {[weak self] (result) in
+                guard let strongSelf = self else {
+                    return
+                }
+                strongSelf.hiddenLoading()
+                switch result {
+                case .success(let merchantInfo):
+                    strongSelf.currentMerchant = merchantInfo
+                    strongSelf.showData()
+                case .error(let error):
+                    strongSelf.showError(error)
+                }
+            })
+        }
+
+    }
+    private func showData(){
+        if let merchant = currentMerchant?.info {
+            let logo = UIImage(base64String: merchant.image)
+            ivLogo.image = logo
+            lbMerchantName.text = merchant.merchant
+            if let balance = currentMerchant?.balance {
+                lbBalance.text = String(format: "$%@",balance)
+            }
+            if let adverts = currentMerchant?.advertisements, adverts.count > 0 {
+                advImages = adverts
+                iCarouselAdvs.reloadData()
+            }else {
+                let imageView = UIImageView(frame: iCarouselAdvs.bounds)
+                imageView.image = logo
+                let blurEffect = UIBlurEffect(style: .light)
+                let blurEffectView = UIVisualEffectView(effect: blurEffect)
+                blurEffectView.frame = imageView.frame
+                blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+                imageView.addSubview(blurEffectView)
+                iCarouselAdvs.addSubview(imageView)
+            }
+        }
+    }
 }
+
+
 extension MerchantViewController: iCarouselDelegate, iCarouselDataSource {
 
     func carousel(_ carousel: iCarousel, valueFor option: iCarouselOption, withDefault value: CGFloat) -> CGFloat {
@@ -92,17 +126,6 @@ extension MerchantViewController: iCarouselDelegate, iCarouselDataSource {
 
 
     func carousel(_ carousel: iCarousel, placeholderViewAt index: Int, reusing view: UIView?) -> UIView {
-//        var itemView: UIImageView
-//        if let view = view as? UIImageView {
-//            itemView = view
-//
-//
-//        }else {
-//            let screenSize = UIScreen.main.bounds.size
-//            itemView = UIImageView(frame: CGRect(x: 0, y: 0, width: screenSize.width , height: screenSize.height/2.0))
-//            itemView.contentMode = .scaleAspectFit
-//        }
-//        itemView.image = UIImage(named: advImages[index].image)
         return UIView()
     }
     func carousel(_ carousel: iCarousel, viewForItemAt index: Int, reusing view: UIView?) -> UIView {
@@ -114,11 +137,10 @@ extension MerchantViewController: iCarouselDelegate, iCarouselDataSource {
         }else {
             let screenSize = UIScreen.main.bounds.size
             itemView = UIImageView(frame: CGRect(x: 0, y: 0, width: screenSize.width , height:screenSize.width))
-//            print("w \(screenSize.width) ")
             itemView.contentMode = .scaleAspectFill
             itemView.backgroundColor = UIColor.blue
         }
-        itemView.image = UIImage(named: advImages[index].image)
+//        itemView.image = UIImage(named: advImages[index].image)
         return itemView
     }
 

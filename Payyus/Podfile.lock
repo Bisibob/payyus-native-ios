@@ -10,17 +10,21 @@ PODS:
   - LGSideMenuController (2.1.1)
   - Plaid (1.1.6)
   - RNCryptor (5.0.2)
+  - Socket.IO-Client-Swift (13.1.1):
+    - Starscream (~> 3.0.2)
+  - Starscream (3.0.4)
   - SwiftyJSON (4.0.0)
 
 DEPENDENCIES:
-  - Alamofire
-  - Crashlytics
+  - Alamofire (~> 4.7.0)
+  - Crashlytics (~> 3.9.3)
   - EVReflection (~> 5.5.1)
   - Fabric
-  - IQKeyboardManager
-  - LGSideMenuController
-  - Plaid
+  - IQKeyboardManager (~> 5.0.0)
+  - LGSideMenuController (~> 2.1.1)
+  - Plaid (~> 1.1.0)
   - RNCryptor (~> 5.0)
+  - Socket.IO-Client-Swift (~> 13.1.0)
   - SwiftyJSON
 
 SPEC CHECKSUMS:
@@ -32,8 +36,10 @@ SPEC CHECKSUMS:
   LGSideMenuController: ae40c80983ab8b8801c7cef0a6804d43aaa72d45
   Plaid: 254ef68f0ec28fc48627504aefb0c18dde5d08d8
   RNCryptor: 59b9f92e9fa8a1af74c32dc6b1af5e30ff5e1b64
+  Socket.IO-Client-Swift: f22222913f29801e30ae0df712db663ec096edc2
+  Starscream: f5da93fe6984c77b694366bf7299b7dc63a76f26
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
 
-PODFILE CHECKSUM: 5e7a80121f3000054254bdce301f01b4be23f628
+PODFILE CHECKSUM: 951d4b16e788089c97f04bf6138a67e25f5ba633
 
 COCOAPODS: 1.4.0

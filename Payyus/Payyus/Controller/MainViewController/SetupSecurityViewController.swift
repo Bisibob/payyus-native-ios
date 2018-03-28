@@ -26,6 +26,7 @@ class SetupSecurityViewController: BaseViewController {
         btnNext.addCorner()
         btnNext.isEnabled = false
         tfPassword.delegate = self
+        tfPassword.addEyeButton()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -76,11 +77,6 @@ class SetupSecurityViewController: BaseViewController {
 //        }
     }
 
-    @IBAction func onVisiblePassword(_ sender: UIButton) {
-        sender.isSelected = !sender.isSelected
-        tfPassword.isSecureTextEntry = !tfPassword.isSecureTextEntry
-        tfPassword.becomeFirstResponder()
-    }
     func showAlertToRegisterPhone() {
         showAlert(title: "Warning", message: "", cancelTitle: "Cancel", doneTitle: "Confirm") {[unowned self] (_) in
             self.showLoading()

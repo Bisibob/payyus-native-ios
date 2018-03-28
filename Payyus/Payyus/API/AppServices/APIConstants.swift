@@ -14,10 +14,12 @@ enum APIConstants : String{
     case secretKey = "v3/getSecretKey"
     case registerUser = "v3/registerUser"
     case getMerchantsList = "v3/getMerchantsList"
+    case getMerchantInfo = "v3/getMerchantInfo"
     case plaidAccounts = "plaidAccounts"
     case getZipCodes = "getZipCodes"
     case storeUserNames = "v3/storeUserNames"
     case setHalfC = "v3/setHalfC"
+
     
 
 }

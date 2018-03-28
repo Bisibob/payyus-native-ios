@@ -116,7 +116,6 @@ class AppAPIService {
 
     // MARK: Merchant
     static func searchMerchant(name: String, completionHandler: @escaping ((Results<Merchant>) -> Void))-> DataRequest? {
-        print(name)
         let url = APIService.getAPIURL(apiName: APIConstants.getMerchantsList.rawValue)
         let params = ["searchKey" : name]
         return APIService.authRequest(url: url, method: .post, parameters: params, completionHandler: { (data) in
@@ -135,6 +134,29 @@ class AppAPIService {
 //                completionHandler(.success(merchants))
 //            }
 //        }
+
+    }
+
+    static func getMerchantInfo(merchantId: String, completionHandler: @escaping ((Result<MerchantMoreInfo>) -> Void)) {
+        let url = APIService.getAPIURL(apiName: APIConstants.getMerchantInfo.rawValue)
+        let params = ["merchantId" : 151]
+        _ = APIService.authRequest(url: url, method: .post, parameters: params, completionHandler: { (data) in
+            let string = String(data: data, encoding: String.Encoding.utf8)
+            print(string)
+            let merchants = MerchantMoreInfo(data: data)
+
+            completionHandler(.success(merchants))
+        }, errorHandler: { (error) in
+
+        })
+        //        DispatchQueue.global().async {
+        //            Thread.sleep(forTimeInterval: 1)
+        //            DispatchQueue.main.async {
+        //                var merchants = SamepleData.merchantsList()
+        //                merchants.append(Merchant(name: name, logo: ""))
+        //                completionHandler(.success(merchants))
+        //            }
+        //        }
 
     }
 

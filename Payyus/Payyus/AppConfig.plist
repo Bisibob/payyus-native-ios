@@ -31,7 +31,7 @@
 	<key>Default</key>
 	<dict>
 		<key>apiBaseURL</key>
-		<string>http://192.168.1.125/phone-ajax/phone-ajax.php?op=</string>
+		<string>http://192.168.1.133/phone-ajax/phone-ajax.php?op=</string>
 		<key>clientID</key>
 		<string>xxxxxx</string>
 		<key>clientSecret</key>

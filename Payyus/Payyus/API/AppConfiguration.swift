@@ -14,8 +14,8 @@ class AppConfiguration: NSObject {
 //    var phoneNumber: String?
 //    var pincode: String?
     var account: Account?
-    var lastMerchant: Merchant?
-    
+//    var lastMerchant: Merchant?
+
 
     private var _baseURL: String = ""
 
