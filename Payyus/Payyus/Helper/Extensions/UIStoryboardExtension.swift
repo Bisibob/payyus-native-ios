@@ -47,6 +47,8 @@ extension UIStoryboard {
             case menuVC = "SIMenu"
             case fundAccount = "SIFundAccount"
             case confirmFunding = "SIConfirmFunding"
+            case billRequests = "SIBillRequests"
+            case merchantsList = "SIMerchantsList"
         }
 
         static func mainViewController() -> UIViewController {
@@ -87,6 +89,15 @@ extension UIStoryboard {
 
         static func confirmFundingViewController() -> UIViewController {
             return Identifier.confirmFunding.viewController()
+        }
+
+        static func billRequestsViewController() -> UIViewController {
+            return Identifier.billRequests.viewController()
+        }
+
+        static func viewControler(sid: String) -> UIViewController? {
+            let identifier = Identifier(rawValue: sid)
+            return identifier?.viewController()
         }
     }
 

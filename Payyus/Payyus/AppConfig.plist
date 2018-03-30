@@ -19,6 +19,8 @@
 	<dict>
 		<key>apiBaseURL</key>
 		<string>http://ach.payyus.com/phone-ajax/phone-ajax.php?op=</string>
+		<key>socketURL</key>
+		<string>ws://ach.payyus.com:8443</string>
 		<key>clientID</key>
 		<string>xxxxxx</string>
 		<key>clientSecret</key>
@@ -32,6 +34,8 @@
 	<dict>
 		<key>apiBaseURL</key>
 		<string>http://192.168.1.133/phone-ajax/phone-ajax.php?op=</string>
+		<key>socketURL</key>
+		<string>ws://192.168.1.133:8443</string>
 		<key>clientID</key>
 		<string>xxxxxx</string>
 		<key>clientSecret</key>

@@ -13,7 +13,7 @@ class BankAccountSelectionViewController: BaseViewController {
     @IBOutlet weak var vLoading: UIView!
     @IBOutlet weak var btnDone: UIButton!
     var publicToken: String?
-
+    var accessToken: String?
     private var bankAccounts: [PlaidBankAccount] = []
     private var selectedAccount: BankAccount?
 
@@ -21,7 +21,7 @@ class BankAccountSelectionViewController: BaseViewController {
         super.viewDidLoad()
         UIApplication.shared.statusBarStyle = .lightContent
         // Do any additional setup after loading the view.
-//        publicToken = "public-sandbox-d5bb4087-f690-4120-84ae-bf34eb4ba014"
+//        publicToken = "public-sandbox-2d9cfdee-0b02-410c-b929-e1a874491536"
         setupView()
         loadBankAccount()
     }
@@ -53,9 +53,10 @@ class BankAccountSelectionViewController: BaseViewController {
             }
             strongSelf.vLoading.isHidden = true
             switch result {
-            case .success(let accounts):
-                strongSelf.bankAccounts = accounts
+            case .success(let respone):
+                strongSelf.bankAccounts = respone.accounts
                 strongSelf.tbvBankAccount.reloadData()
+                strongSelf.accessToken = respone.accessToken
                 break
             case .error(let error):
                 break
@@ -63,8 +64,10 @@ class BankAccountSelectionViewController: BaseViewController {
         }
     }
 
-    private func saveBankAccount(_ account: PlaidBankAccount) {
+    private func saveBankAccount(stripe: String, account: PlaidBankAccount) {
+
         selectedAccount = BankAccount(plaidAccount: account)
+        selectedAccount?.stripeToken = stripe
         guard let info = account.info else {
             AppConfiguration.shared.bankData = account
             //move to setup bank billing
@@ -109,6 +112,7 @@ class BankAccountSelectionViewController: BaseViewController {
             switch result {
             case .success(_):
                 AppConfiguration.shared.account?.isSetupBank = true
+                AppConfiguration.shared.saveData()
                 let appDelegate = UIApplication.shared.delegate as! AppDelegate
                 appDelegate.moveToMainViewController()
 
@@ -144,7 +148,23 @@ extension BankAccountSelectionViewController : UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        selectedAccount = bankAccounts[indexPath.row]
 //        btnDone.isEnabled = true
-        saveBankAccount(bankAccounts[indexPath.row])
+        guard let accessToken = accessToken else {
+            showError("Cant setup bank this time.")
+            return
+        }
+        showLoading()
+        AppAPIService.getStripeToken(accessToken: accessToken, accountId: bankAccounts[indexPath.row].accountId) {[weak self] (result) in
+            guard let strongSelf = self else {
+                return
+            }
+            switch result {
+            case .success(let stripeToken):
+                strongSelf.saveBankAccount(stripe: stripeToken, account: strongSelf.bankAccounts[indexPath.row])
+            case .error(let error):
+                strongSelf.showError(error)
+            }
+        }
+
     }
 
 }

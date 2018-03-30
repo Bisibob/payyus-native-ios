@@ -10,7 +10,16 @@ import UIKit
 
 class MenuViewController: BaseViewController {
     @IBOutlet weak var tbvMenu: UITableView!
-    var menuList: [String] = ["Merchants", "Bill Request", "Activity", "Rewards", "Gift Card", "Feedback", "Settings"]
+    typealias Menu = (title: String, SID: String)
+    var menuList: [Menu] = [ (title: "Merchants", SID: ""),
+                             (title: "Bill Requests", SID: "SIBillRequests"),
+                             (title: "Activity", SID: ""),
+                             (title: "Rewards", SID: ""),
+                             (title: "Gift Card", SID: ""),
+                             (title: "Feedback", SID: ""),
+                             (title: "Settings", SID: "")]
+    var showViewControllerHandler:((UIViewController) -> Void)?
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -35,13 +44,17 @@ extension MenuViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = menuList[indexPath.row]
+        cell.textLabel?.text = menuList[indexPath.row].title
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedCell:UITableViewCell = tableView.cellForRow(at: indexPath)!
         selectedCell.contentView.backgroundColor = UIColor(hex: "ACAEAE")
+        if let vc = UIStoryboard.Main.viewControler(sid: menuList[indexPath.row].SID) {
+            showViewControllerHandler?(vc)
+        }
+        tableView.deselectRow(at: indexPath, animated: false)
     }
 
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {

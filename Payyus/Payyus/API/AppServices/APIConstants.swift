@@ -19,7 +19,9 @@ enum APIConstants : String{
     case getZipCodes = "getZipCodes"
     case storeUserNames = "v3/storeUserNames"
     case setHalfC = "v3/setHalfC"
-
-    
-
+    case getReloadLimit = "v3/getReloadLimit"
+    case getStripeToken = "v3/getStripeToken"
+    case getBills = "getBills"
+    case rejectBill = "rejectBill"
+    case getBill = "v3/getBill"
 }

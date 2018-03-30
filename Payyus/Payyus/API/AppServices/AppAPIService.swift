@@ -139,45 +139,36 @@ class AppAPIService {
 
     static func getMerchantInfo(merchantId: String, completionHandler: @escaping ((Result<MerchantMoreInfo>) -> Void)) {
         let url = APIService.getAPIURL(apiName: APIConstants.getMerchantInfo.rawValue)
-        let params = ["merchantId" : 151]
+        let params = ["merchantId" : merchantId]
+//        let params = ["token": "ec1655a5c2adb291c7182b058299031a", "merchantId" : "90"]
         _ = APIService.authRequest(url: url, method: .post, parameters: params, completionHandler: { (data) in
-            let string = String(data: data, encoding: String.Encoding.utf8)
-            print(string)
             let merchants = MerchantMoreInfo(data: data)
-
             completionHandler(.success(merchants))
         }, errorHandler: { (error) in
-
         })
-        //        DispatchQueue.global().async {
-        //            Thread.sleep(forTimeInterval: 1)
-        //            DispatchQueue.main.async {
-        //                var merchants = SamepleData.merchantsList()
-        //                merchants.append(Merchant(name: name, logo: ""))
-        //                completionHandler(.success(merchants))
-        //            }
-        //        }
-
     }
 
-    // MARK: Payment
-    static func plaidAccounts(publicToken: String, completionHandler: @escaping ((Results<PlaidBankAccount>) -> Void)){
+    // MARK: Setup bank account
+    static func plaidAccounts(publicToken: String, completionHandler: @escaping ((Result<PlaidAccountsRespone>) -> Void)){
         let url = APIService.getAPIURL(apiName: APIConstants.plaidAccounts.rawValue)
         let params = ["ptoken" : publicToken]
         _ = APIService.authRequest(url: url, method: .post, parameters: params, completionHandler: { (data) in
-            let bankAccount = [PlaidBankAccount](data: data, conversionOptions: ConversionOptions.DefaultDeserialize, forKeyPath: "accounts")
-            completionHandler(.success(bankAccount))
+            let respone = PlaidAccountsRespone(data: data)
+            completionHandler(.success(respone))
         }, errorHandler: { (error) in
             print(error)
         })
-//        DispatchQueue.global().async {
-//            Thread.sleep(forTimeInterval: 1)
-//            DispatchQueue.main.async {
-//                let bankAccount = SamepleData.bankAccountsList()
-//                completionHandler(.success(bankAccount))
-//            }
-//        }
+    }
 
+    static func getStripeToken(accessToken: String, accountId: String, completionHandler: @escaping ((Result<String>) -> Void)){
+        let url = APIService.getAPIURL(apiName: APIConstants.getStripeToken.rawValue)
+        let params = ["access_token" : accessToken, "account_id": accountId]
+        _ = APIService.authRequest(url: url, method: .post, parameters: params, completionHandler: { ( data) in
+            let stripe = StripeTokenRespone(data: data)
+            completionHandler(.success(stripe.token))
+        }, errorHandler: { (error) in
+            completionHandler(.error(error))
+        })
     }
 
     static func getZipCodes(zipCode: String, completionHandler: @escaping (([DataValue]) -> Void)) -> DataRequest? {
@@ -194,15 +185,13 @@ class AppAPIService {
     static func saveSelectedBankAccount(account: BankAccount, completionHandler: @escaping ((Result<Void>) -> Void)) {
         guard let phoneAccount = AppConfiguration.shared.account else {
             completionHandler(.error(""))
+            //TODO: move to login
             return
         }
         let params = ["phone": phoneAccount.phone, "pincode": phoneAccount.pinCode, "ch" : "1"]
         let url = APIService.getAPIURL(apiName: APIConstants.secretKey.rawValue)
         _ = APIService.requestCheckErrorData(url: url, method: .post, parameters: params, completionHandler: { (message, data) in
             let secretKey = SecretKey(data: data)
-//            BankAccountSecurity.shared.saveNewBankAccount(account, secretKey: secretKey.secretKey)
-//
-//            let serverEncryptedData = BankAccountSecurity.shared.newBankAccountForServerHalf(account, secretKey: secretKey.secretKey, chData: secretKey.ch)
             let serverHalf = BankAccountSecurity.shared.saveBankAccount(account, secretKey: secretKey.secretKey, chData: secretKey.ch)
             let userNames = BankAccountSecurity.shared.storeUserName()
             storeUserNames(names: userNames, completionHandler: nil)
@@ -244,6 +233,57 @@ class AppAPIService {
         }, errorHandler: { (error) in
             completionHandler?(.error(error))
         })
+    }
+
+    //MARK: Payment
+    static func getReloadLimit(merchantId: String, completionHandler: @escaping (Result<ReloadLimit>) -> Void) {
+        let url = APIService.getAPIURL(apiName: APIConstants.getReloadLimit.rawValue)
+        let params: [String: Any] = ["availableBalance": 0, "m" : merchantId]
+        _ = APIService.authRequest(url: url, method: .post, parameters: params, completionHandler: { (data) in
+            let limit = ReloadLimit(data: data)
+            completionHandler(.success(limit))
+        }, errorHandler: { (error) in
+            completionHandler(.error(error))
+        })
+    }
+    static func getSecretKey(phone: String, pincode: String, completionHandler: @escaping (Result<String>) ->Void) {
+        let params = ["phone": phone, "pincode": pincode]
+        let url = APIService.getAPIURL(apiName: APIConstants.secretKey.rawValue)
+        _ = APIService.requestCheckErrorData(url: url, method: .post, parameters: params, completionHandler: { (message, data) in
+            let secretKey = SecretKey(data: data)
+            completionHandler(.success(secretKey.secretKey))
+        }) { (error) in
+            print("error: \(error)")
+            completionHandler(.error(error))
+        }
 
     }
+
+    //MARK: Bill Requests
+    static func getBills(completionHandler: @escaping (Results<BillRequest>) -> Void){
+        let url = APIService.getAPIURL(apiName: APIConstants.getBills.rawValue)
+        _ = APIService.authRequest(url: url, method: .post, parameters: nil, completionHandler: { (data) in
+            let bills = [BillRequest](data: data, conversionOptions: ConversionOptions.DefaultDeserialize, forKeyPath: "bills")
+            completionHandler(.success(bills))
+        }, errorHandler: { (error) in
+            completionHandler(.error(error))
+        })
+    }
+
+    static func rejectBill(billNumber: String, completionHandler: @escaping (Result<String>) -> Void){
+        let url = APIService.getAPIURL(apiName: APIConstants.rejectBill.rawValue)
+        let params = ["billNo": billNumber]
+        _ = APIService.authRequest(url: url, method: .post, parameters: params, completionHandler: { (data) in
+            let data = ResponeResult(data: data)
+            if data.error.isEmpty && data.status == 1 {
+                completionHandler(.success(billNumber))
+            }else {
+                completionHandler(.error(data.error))
+            }
+        }, errorHandler: { (error) in
+            completionHandler(.error(error))
+        })
+    }
+
+    
 }

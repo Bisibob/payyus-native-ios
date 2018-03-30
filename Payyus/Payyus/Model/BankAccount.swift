@@ -17,7 +17,7 @@ class BankAccount: ModelType {
     var yourAddress: String = ""
     var zipcode: String = ""
     var acctType: Int = 0
-
+    var stripeToken: String = ""
     required init() {
 
     }
@@ -46,6 +46,7 @@ class BankAccount: ModelType {
         account.bankRoutingNumber = bankRoutingNumber.prefixAHalf()
         account.yourPhoneNumber = yourPhoneNumber.prefixAHalf()
         account.zipcode = zipcode.prefixAHalf()
+        account.stripeToken = stripeToken.prefixAHalf()
         return account
     }
 
@@ -56,6 +57,7 @@ class BankAccount: ModelType {
         account.bankRoutingNumber = bankRoutingNumber.suffixAHalf()
         account.yourPhoneNumber = yourPhoneNumber.suffixAHalf()
         account.zipcode = zipcode.suffixAHalf()
+        account.stripeToken = stripeToken.suffixAHalf()
         return account
     }
 

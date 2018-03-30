@@ -18,7 +18,7 @@ class AppConfiguration: NSObject {
 
 
     private var _baseURL: String = ""
-
+    private var _socketURL: String = ""
 
 
     private override init() {
@@ -61,6 +61,9 @@ class AppConfiguration: NSObject {
         return _baseURL
     }
 
+    func socketURL() -> String {
+        return _socketURL
+    }
     func saveToken(phone: String, token: String) {
         if !token.isEmpty {
             if account == nil {
@@ -76,6 +79,7 @@ class AppConfiguration: NSObject {
         let enviromentName = buildEnviromentName()
         if let path = Bundle.main.path(forResource: "AppConfig", ofType: "plist"), let config = NSDictionary(contentsOfFile: path), let configData = config[enviromentName] as? Dictionary<String, Any>{
             _baseURL = configData["apiBaseURL"] as! String
+            _socketURL = configData["socketURL"] as! String
         }
     }
 

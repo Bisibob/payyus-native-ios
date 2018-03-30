@@ -19,7 +19,8 @@ class Merchant: ModelType {
     override func propertyMapping() -> [(keyInObject: String?, keyInResource: String?)] {
         return [(keyInObject: "paymentType", keyInResource: "payment_type"),
                 (keyInObject: "backgroundColor", keyInResource: "background_color"),
-                (keyInObject: "foreColor", keyInResource: "fore_color")
+                (keyInObject: "foreColor", keyInResource: "fore_color"),
+                (keyInObject: "userName", keyInResource: "username")
         ]
     }
 

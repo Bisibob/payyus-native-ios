@@ -37,10 +37,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 navigation.isNavigationBarHidden = true
                 self.window?.rootViewController = navigation
             }else {
-//                let mainVC = UIStoryboard.Main.mainViewController()
-//                let navigation = UINavigationController(rootViewController: mainVC)
-//                navigation.isNavigationBarHidden = true
-//                self.window?.rootViewController = navigation
+                let mainVC = UIStoryboard.Main.mainViewController()
+                let navigation = UINavigationController(rootViewController: mainVC)
+                navigation.isNavigationBarHidden = true
+                self.window?.rootViewController = navigation
             }
         }
         return true

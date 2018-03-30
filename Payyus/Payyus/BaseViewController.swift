@@ -19,10 +19,13 @@ class BaseViewController: UIViewController {
         indicator.center = v.center
         return v
     }()
-    lazy var menuVC = UIStoryboard.Main.menuViewController()
+    lazy var menuVC: MenuViewController = UIStoryboard.Main.menuViewController() as! MenuViewController
+    var menuButton: UIButton?
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        menuVC.showViewControllerHandler = {[unowned self] (vc) in
+            self.showViewControllerFromMenu(vc: vc)
+        }
         // Do any additional setup after loading the view.
     }
 
@@ -30,8 +33,19 @@ class BaseViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+
+    func showMenu() {
+        guard menuButton == nil else {
+            return
+        }
+        menuButton = UIButton(frame: CGRect(x: 16, y: 30, width: 30, height: 30))
+        menuButton!.setImage(#imageLiteral(resourceName: "logo_icon"), for: .normal)
+        menuButton!.addTarget(self, action: #selector(onMenu(sender:)), for: .touchUpInside)
+        menuButton!.tag = 99
+        view.addSubview(menuButton!)
+    }
     
-    func showMenu(sender: UIButton) {
+    @objc func onMenu(sender: UIButton) {
         if sender.isSelected {
             menuVC.view.removeFromSuperview()
         }else{
@@ -41,6 +55,25 @@ class BaseViewController: UIViewController {
             sender.superview?.addSubview(menuVC.view)
         }
         sender.isSelected = !sender.isSelected
+    }
+
+    func showViewControllerFromMenu(vc: UIViewController){
+        if let menuButton = menuButton {
+            onMenu(sender: menuButton)
+        }
+        present(vc, animated: true, completion: nil)
+    }
+    
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+
+        if menuVC.view.superview != nil, let point = touches.first?.location(in: view) {
+            if menuVC.view.hitTest(point, with: event) == nil {
+                if let menuButton = menuButton {
+                    onMenu(sender: menuButton)
+                }
+            }
+        }
     }
     /*
     // MARK: - Navigation
@@ -58,6 +91,10 @@ class BaseViewController: UIViewController {
         showMessage(title: "Error", message: message)
     }
 
+//    func showMessage(message: String) {
+//        let frame = view.frame
+//        let label = UILabel(frame: <#T##CGRect#>)
+//    }
 
 
     func showMessage(title: String, message: String) {
@@ -69,7 +106,9 @@ class BaseViewController: UIViewController {
 
 
     func showLoading(alpha: CGFloat = 0.5) {
-        loadingView.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: alpha)
+        if alpha > 0.5 {
+            loadingView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: alpha)
+        }
         if !view.subviews.contains(loadingView){
             view.addSubview(loadingView)
         }
@@ -79,7 +118,7 @@ class BaseViewController: UIViewController {
         let alert = UIAlertController(title: NSLocalizedString(title, comment: ""), message: NSLocalizedString(message, comment: ""), preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString(cancelTitle, comment: ""), style: .cancel, handler: cancelHandler))
         if let doneTitle = doneTitle {
-            alert.addAction(UIAlertAction(title: NSLocalizedString(doneTitle, comment: ""), style: .cancel, handler: doneHandler))
+            alert.addAction(UIAlertAction(title: NSLocalizedString(doneTitle, comment: ""), style: .destructive, handler: doneHandler))
         }
         self.present(alert, animated: true, completion: nil)
     }

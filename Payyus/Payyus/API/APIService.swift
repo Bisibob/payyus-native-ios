@@ -53,8 +53,8 @@ class APIService {
         }
         var params: [String: Any] = ["phone": account.phone, "token": account.token]
         if let parameters = parameters {
-            params = params.merging(parameters, uniquingKeysWith: { (current, _) -> Any in
-                current
+            params = params.merging(parameters, uniquingKeysWith: { (_, new) -> Any in
+                new
             })
         }
         return request(url: url, method: method, parameters: params, completionHandler: completionHandler, errorHandler: errorHandler)

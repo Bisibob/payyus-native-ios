@@ -10,22 +10,54 @@ import Foundation
 import RNCryptor
 
 class BankAccountSecurity {
+    private enum InformationKey: String {
+        case bankAccount = "bankAccount"
+        case card = "card"
+        case shopperBankInfo = "shopperBankInfo"
+        case aid = "aid"
+//        case stripeToken = "stripeToken"
+    }
     static let shared = BankAccountSecurity()
 //    var cardList: [String: AnyObject]?
-    var chLocalBankAccountData: Data?
-    var chLocalEncryptedDictionary: [String: Any]?
-    var currentBankAccount: BankAccount?
-    var shopperBankInfo: ShopperBankInfo?{
+    private var chLocalBankAccountData: Data?
+    private var chLocalEncryptedDictionary: [String: Any]?
+    private var currentBankAccount: BankAccount?
+
+    private var _shopperBankInfo: ShopperBankInfo?{
         didSet {
-            chLocalEncryptedDictionary?["shopperBankInfo"] = shopperBankInfo?.toDictionary()
+            chLocalEncryptedDictionary?[InformationKey.shopperBankInfo.rawValue] = _shopperBankInfo?.toDictionary()
         }
     }
-
+    var shopperBankInfo: ShopperBankInfo?
+    var aid: String?
+//    var stripeToken: String? {
+//        didSet {
+//            chLocalEncryptedDictionary?[InformationKey.stripeToken.rawValue] = stripeToken
+//            saveData()
+//        }
+//    }
     private init(){
         if let fileURL = fileUrl() {
-            chLocalEncryptedDictionary = NSDictionary(contentsOf: fileURL) as? [String: Data]
-
+            chLocalEncryptedDictionary = NSDictionary(contentsOf: fileURL) as? [String: Any]
+//            chLocalEncryptedDictionary?[InformationKey.aid.rawValue] = "1522305032229"
+            aid = chLocalEncryptedDictionary?[InformationKey.aid.rawValue] as? String
+            if let bankInfo = chLocalEncryptedDictionary?[InformationKey.shopperBankInfo.rawValue] as? NSDictionary{
+                shopperBankInfo = ShopperBankInfo(dictionary: bankInfo)
+            }
+//            saveData()
         }
+    }
+    
+    func getPaymentBankAccount(secretKey: String) -> BankAccount? {
+        if let dic = chLocalEncryptedDictionary, let data = dic[InformationKey.bankAccount.rawValue] as? Data {
+            do {
+                let decryptData = try RNCryptor.decrypt(data: data, withPassword: secretKey)
+                return BankAccount(data: decryptData)
+            }catch {
+
+            }
+        }
+        return nil
     }
 
     func saveData() {
@@ -36,7 +68,9 @@ class BankAccountSecurity {
         }
     }
     func saveBankAccount(_ bankAccount: BankAccount, secretKey: String, chData: String) -> NSDictionary {
-        let currentTime = Date().timeIntervalSince1970
+        if aid == nil {
+            aid = String(format: "%.f",Date().timeIntervalSince1970)
+        }
         if chLocalEncryptedDictionary == nil {
             chLocalEncryptedDictionary = [String: Data]()
         }
@@ -44,8 +78,10 @@ class BankAccountSecurity {
         let localHalf = bankAccount.localPart()
         let data = localHalf.toJsonData()
         let encryptedData = RNCryptor.encrypt(data: data, withPassword: secretKey)
-        chLocalEncryptedDictionary?["bankAccount"] = encryptedData
+        chLocalEncryptedDictionary?[InformationKey.bankAccount.rawValue] = encryptedData
+        chLocalEncryptedDictionary?[InformationKey.aid.rawValue] = aid
         saveData()
+        currentBankAccount = bankAccount
 //        let serverHalf = NSDictionary()
 //        do {
 //            if !chData.isEmpty {
@@ -59,7 +95,7 @@ class BankAccountSecurity {
 //        }catch {
 //
 //        }
-        let serverHalf = ["\(currentTime)" :["bankAccount": bankAccount.serverPart().toDictionary()]]
+        let serverHalf = ["\(aid)" :[InformationKey.bankAccount.rawValue: bankAccount.serverPart().toDictionary()]]
         return serverHalf as NSDictionary
     }
 
